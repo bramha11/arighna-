@@ -1,0 +1,83 @@
+<!-- ==========================================
+      SECTION 5: 3D DNA CNS THERAPEUTICS SECTION
+ =========================================== -->
+<section id="cns-dna-section" class="relative w-full min-h-screen bg-white overflow-hidden flex items-center justify-center font-['Plus_Jakarta_Sans',sans-serif]">
+  
+  <!-- Full-Screen 3D DNA Model Layer -->
+  <div class="absolute inset-0 w-full h-full z-0 pointer-events-auto">
+    <spline-viewer 
+      id="cns-spline" 
+      loading="eager"
+      loading-anim-type="none" 
+      url="./assets/3d/scene.splinecode" 
+      class="w-full h-full block min-h-screen bg-transparent">
+    </spline-viewer>
+  </div>
+
+  <!-- Dynamic 1500px Content Layer -->
+  <div class="relative z-10 w-full max-w-[1500px] min-h-screen mx-auto px-6 lg:px-12 py-20 lg:py-28 flex flex-col justify-between pointer-events-none">
+    
+    <!-- TOP-LEFT: Heading Block -->
+    <div class="max-w-[720px] self-start pointer-events-auto">
+      <!--<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0493BB]/10 text-[#0493BB] text-[14px] font-semibold uppercase tracking-wider mb-4 border border-[#0493BB]/20">
+        <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+        <span>Central Nervous System Therapeutics</span>
+      </div> -->
+      <h2 class="text-[32px] sm:text-[40px] lg:text-[48px] font-normal text-[#002A5C] leading-[1.22] tracking-tight">
+        Pioneering breakthrough <span class="text-[#0493BB] font-semibold">CNS medicines</span> engineered for complex <span class="text-[#0493BB] font-semibold">neural pathways</span>.
+      </h2>
+    </div>
+
+    <!-- BOTTOM-RIGHT: Description Block -->
+    <div class="max-w-[720px] self-end text-left lg:text-right pointer-events-auto mt-16">
+      <p class="text-[32px] sm:text-[40px] lg:text-[48px] font-normal text-[#002A5C] leading-[1.22] tracking-tight">
+        Targeting the molecular drivers of <span class="text-[#0493BB] font-semibold">neurodegenerative</span> disorders to restore <span class="text-[#0493BB] font-semibold">brain function</span>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WebGL Background Force & Watermark Removal Script -->
+<script>
+  (function fixSplineCanvas() {
+    const viewer = document.getElementById('cns-spline');
+    if (!viewer) return;
+
+    function applyCanvasOverrides() {
+      if (!viewer.shadowRoot) return;
+
+      // 1. Hide Logo Watermark
+      const logo = viewer.shadowRoot.querySelector('#logo');
+      if (logo) {
+        logo.style.setProperty('display', 'none', 'important');
+        logo.style.setProperty('opacity', '0', 'important');
+      }
+
+      // 2. Target Canvas & Override WebGL Context Clear Color
+      const canvas = viewer.shadowRoot.querySelector('canvas');
+      if (canvas) {
+        canvas.style.setProperty('background', '#ffffff', 'important');
+        canvas.style.setProperty('background-color', '#ffffff', 'important');
+
+        // Access internal WebGL / WebGL2 context
+        const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+        if (gl) {
+          // Force clear color to white (R:1, G:1, B:1, A:1)
+          gl.clearColor(1.0, 1.0, 1.0, 1.0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+      }
+    }
+
+    // Run interval continuously during initial load
+    const timer = setInterval(applyCanvasOverrides, 30);
+
+    viewer.addEventListener('load', () => {
+      applyCanvasOverrides();
+      // Keep checking briefly after load to ensure WebGL frame buffer doesn't overwrite it
+      setTimeout(() => clearInterval(timer), 1000);
+    });
+  })();
+</script> 
