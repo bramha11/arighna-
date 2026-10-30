@@ -105,10 +105,11 @@
     <!-- Desktop Navigation Menu -->
     <nav class="hidden lg:flex items-center gap-8 xl:gap-10 text-[16px] font-normal">
 
-      <!-- 1. About Us Dropdown (Includes Investor Relations) -->
-      <div class="nav-element relative group py-2 text-white">
-        <button class="flex items-center gap-1.5 hover:text-[#0493BB] transition-colors focus:outline-none">
-          About Us <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+      <!-- 1. About Us Hyperlink + Dropdown -->
+      <div class="nav-element relative group py-2 text-white flex items-center gap-1.5">
+        <a href="about.html" class="hover:text-[#0493BB] transition-colors">About Us</a>
+        <button class="focus:outline-none flex items-center" aria-label="Toggle About Us menu">
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
         </button>
 
         <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
@@ -122,10 +123,11 @@
       <!-- 2. Products (No Dropdown) -->
       <a href="#products" class="nav-element text-white hover:text-[#0493BB] transition-colors">Products</a>
 
-      <!-- 3. Beyond Business Dropdown -->
-      <div class="nav-element relative group py-2 text-white">
-        <button class="flex items-center gap-1.5 hover:text-[#0493BB] transition-colors focus:outline-none">
-          Beyond Business <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+      <!-- 3. Beyond Business Hyperlink + Dropdown -->
+      <div class="nav-element relative group py-2 text-white flex items-center gap-1.5">
+        <a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors">Beyond Business</a>
+        <button class="focus:outline-none flex items-center" aria-label="Toggle Beyond Business menu">
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
         </button>
 
         <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
@@ -477,6 +479,7 @@
   </div>
 </section>
 
+<!--3d here-->
 <!-- ==========================================
       SECTION 5: 3D DNA CNS THERAPEUTICS SECTION
  =========================================== -->
@@ -560,7 +563,6 @@
     });
   })();
 </script> 
-
 
 <!-- ==========================================
       SECTION: THERAPEUTIC AREAS & PORTFOLIO
@@ -1135,6 +1137,199 @@
 
   </div>
 </section>
+
+
+
+<!-- ==========================================
+      SECTION: FREQUENTLY ASKED QUESTIONS (FAQ)
+=========================================== -->
+<section id="faq-section" class="w-full py-28 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+  <div class="max-w-[1500px] mx-auto w-full">
+    
+    <!-- STRICT TOP POSITIONING GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start pt-0 mt-0">
+      
+      <!-- LEFT COLUMN: STICKY AT TOP: 0 -->
+      <div class="lg:col-span-5 flex flex-col pt-0 mt-0 lg:sticky lg:top-0">
+        
+        <!-- Pill Tag -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4 w-fit mt-0">
+          <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+          <span>Frequently asked questions</span>
+        </div>
+
+        <!-- Short 2-Line Heading -->
+        <h2 class="text-[36px] sm:text-[44px] lg:text-[50px] font-medium tracking-tight leading-[1.12] text-[#002A5C] mb-5">
+          Got questions? <br />
+          <span class="text-[#0493BB] font-semibold">We have answers.</span>
+        </h2>
+
+        <!-- Description Paragraph -->
+        <p class="text-sm sm:text-base font-normal text-[#475569] leading-relaxed max-w-lg">
+          Find answers to common questions about our high-quality pharmaceutical products, global healthcare standards, and research-driven therapeutic solutions designed for medical professionals.
+        </p>
+
+        <!-- Support CTA Link -->
+        <div class="mt-8">
+          <a href="#contact" class="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0493BB] hover:text-[#002A5C] transition-colors group">
+            <span>Have a specific inquiry? Contact our team</span>
+            <svg class="w-4 h-4 stroke-current transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: ABSOLUTE TOP POSITIONING -->
+      <div class="lg:col-span-7 flex flex-col justify-start pt-0 mt-0">
+        <div class="flex flex-col border-t border-slate-200/80">
+          
+          <!-- Accordion Item 01 -->
+          <div class="faq-item border-b border-slate-200/80 group">
+            <button class="faq-trigger w-full py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="true">
+              <span class="text-lg sm:text-xl font-medium text-[#002A5C] group-hover:text-[#0493BB] transition-colors pr-6">
+                What therapeutic areas does Arighna Pharma focus on?
+              </span>
+              <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-[#002A5C] group-hover:bg-[#002A5C] group-hover:text-white transition-all shrink-0">
+                <i data-lucide="chevron-down" class="faq-icon w-5 h-5 transition-transform duration-300 rotate-180"></i>
+              </div>
+            </button>
+            <div class="faq-content grid grid-rows-[1fr] transition-all duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                  Arighna Pharma specializes in core medical divisions including cardiology, neurology, gastroenterology, oncology, and general healthcare therapies designed to improve overall patient outcomes.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 02 -->
+          <div class="faq-item border-b border-slate-200/80 group">
+            <button class="faq-trigger w-full py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+              <span class="text-lg sm:text-xl font-medium text-[#002A5C] group-hover:text-[#0493BB] transition-colors pr-6">
+                How does Arighna Pharma ensure product quality and safety?
+              </span>
+              <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-[#002A5C] group-hover:bg-[#002A5C] group-hover:text-white transition-all shrink-0">
+                <i data-lucide="chevron-down" class="faq-icon w-5 h-5 transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                  All our pharmaceutical products adhere to global WHO-GMP standards, undergo rigorous clinical testing, and are manufactured in state-of-the-art accredited facilities.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 03 -->
+          <div class="faq-item border-b border-slate-200/80 group">
+            <button class="faq-trigger w-full py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+              <span class="text-lg sm:text-xl font-medium text-[#002A5C] group-hover:text-[#0493BB] transition-colors pr-6">
+                Where are Arighna Pharma therapies currently distributed?
+              </span>
+              <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-[#002A5C] group-hover:bg-[#002A5C] group-hover:text-white transition-all shrink-0">
+                <i data-lucide="chevron-down" class="faq-icon w-5 h-5 transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                  We supply healthcare solutions across regional and international markets, partnering with trusted medical institutions, hospitals, and pharmaceutical distribution networks.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 04 -->
+          <div class="faq-item border-b border-slate-200/80 group">
+            <button class="faq-trigger w-full py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+              <span class="text-lg sm:text-xl font-medium text-[#002A5C] group-hover:text-[#0493BB] transition-colors pr-6">
+                How can healthcare professionals partner with us?
+              </span>
+              <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-[#002A5C] group-hover:bg-[#002A5C] group-hover:text-white transition-all shrink-0">
+                <i data-lucide="chevron-down" class="faq-icon w-5 h-5 transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                  Doctors, pharmacists, and medical distributors can reach out through our official contact portal or partner page to discuss clinical support and commercial collaborations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 05 -->
+          <div class="faq-item border-b border-slate-200/80 group">
+            <button class="faq-trigger w-full py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false">
+              <span class="text-lg sm:text-xl font-medium text-[#002A5C] group-hover:text-[#0493BB] transition-colors pr-6">
+                What is Arighna Pharma’s commitment to sustainability?
+              </span>
+              <div class="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-[#002A5C] group-hover:bg-[#002A5C] group-hover:text-white transition-all shrink-0">
+                <i data-lucide="chevron-down" class="faq-icon w-5 h-5 transition-transform duration-300"></i>
+              </div>
+            </button>
+            <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                  We integrate eco-friendly manufacturing practices, sustainable packaging, and active community wellness initiatives into our long-term business model.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+      ACCORDION INTERACTION SCRIPT
+=========================================== -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqTriggers = document.querySelectorAll(".faq-trigger");
+
+    faqTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const currentItem = trigger.closest(".faq-item");
+        const currentContent = currentItem.querySelector(".faq-content");
+        const currentIcon = trigger.querySelector(".faq-icon");
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          if (item !== currentItem) {
+            const btn = item.querySelector(".faq-trigger");
+            const content = item.querySelector(".faq-content");
+            const icon = item.querySelector(".faq-icon");
+            
+            btn.setAttribute("aria-expanded", "false");
+            content.classList.remove("grid-rows-[1fr]");
+            content.classList.add("grid-rows-[0fr]");
+            if (icon) icon.classList.remove("rotate-180");
+          }
+        });
+
+        if (isExpanded) {
+          trigger.setAttribute("aria-expanded", "false");
+          currentContent.classList.remove("grid-rows-[1fr]");
+          currentContent.classList.add("grid-rows-[0fr]");
+          if (currentIcon) currentIcon.classList.remove("rotate-180");
+        } else {
+          trigger.setAttribute("aria-expanded", "true");
+          currentContent.classList.remove("grid-rows-[0fr]");
+          currentContent.classList.add("grid-rows-[1fr]");
+          if (currentIcon) currentIcon.classList.add("rotate-180");
+        }
+      });
+    });
+  });
+</script>
 
 
 

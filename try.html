@@ -81,3 +81,478 @@
     });
   })();
 </script> 
+
+
+
+
+
+
+<!-- ==========================================
+      SECTION 5: 3D DNA CNS THERAPEUTICS SECTION
+ =========================================== -->
+<section id="cns-dna-section" class="relative w-full min-h-screen bg-white overflow-hidden flex items-center justify-center font-['Plus_Jakarta_Sans',sans-serif]">
+  
+  <!-- Full-Screen 3D DNA Model Layer -->
+  <div class="absolute inset-0 w-full h-full z-0 pointer-events-auto">
+    <spline-viewer 
+      id="cns-spline" 
+      loading="eager"
+      loading-anim-type="none" 
+      url="./assets/3d/scene.splinecode" 
+      class="w-full h-full block min-h-screen bg-transparent">
+    </spline-viewer>
+  </div>
+
+  <!-- Dynamic 1500px Content Layer -->
+  <div class="relative z-10 w-full max-w-[1500px] min-h-screen mx-auto px-6 lg:px-12 py-20 lg:py-28 flex flex-col justify-between pointer-events-none">
+    
+    <!-- TOP-LEFT: Heading Block -->
+    <div class="max-w-[720px] self-start pointer-events-auto">
+      <!--<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0493BB]/10 text-[#0493BB] text-[14px] font-semibold uppercase tracking-wider mb-4 border border-[#0493BB]/20">
+        <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+        <span>Central Nervous System Therapeutics</span>
+      </div> -->
+      <h2 class="text-[32px] sm:text-[40px] lg:text-[48px] font-normal text-[#002A5C] leading-[1.22] tracking-tight">
+        Pioneering breakthrough <span class="text-[#0493BB] font-semibold">CNS medicines</span> engineered for complex <span class="text-[#0493BB] font-semibold">neural pathways</span>.
+      </h2>
+    </div>
+
+    <!-- BOTTOM-RIGHT: Description Block -->
+    <div class="max-w-[720px] self-end text-left lg:text-right pointer-events-auto mt-16">
+      <p class="text-[32px] sm:text-[40px] lg:text-[48px] font-normal text-[#002A5C] leading-[1.22] tracking-tight">
+        Targeting the molecular drivers of <span class="text-[#0493BB] font-semibold">neurodegenerative</span> disorders to restore <span class="text-[#0493BB] font-semibold">brain function</span>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WebGL Background Force & Watermark Removal Script -->
+<script>
+  (function fixSplineCanvas() {
+    const viewer = document.getElementById('cns-spline');
+    if (!viewer) return;
+
+    function applyCanvasOverrides() {
+      if (!viewer.shadowRoot) return;
+
+      // 1. Hide Logo Watermark
+      const logo = viewer.shadowRoot.querySelector('#logo');
+      if (logo) {
+        logo.style.setProperty('display', 'none', 'important');
+        logo.style.setProperty('opacity', '0', 'important');
+      }
+
+      // 2. Target Canvas & Override WebGL Context Clear Color
+      const canvas = viewer.shadowRoot.querySelector('canvas');
+      if (canvas) {
+        canvas.style.setProperty('background', '#ffffff', 'important');
+        canvas.style.setProperty('background-color', '#ffffff', 'important');
+
+        // Access internal WebGL / WebGL2 context
+        const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+        if (gl) {
+          // Force clear color to white (R:1, G:1, B:1, A:1)
+          gl.clearColor(1.0, 1.0, 1.0, 1.0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+      }
+    }
+
+    // Run interval continuously during initial load
+    const timer = setInterval(applyCanvasOverrides, 30);
+
+    viewer.addEventListener('load', () => {
+      applyCanvasOverrides();
+      // Keep checking briefly after load to ensure WebGL frame buffer doesn't overwrite it
+      setTimeout(() => clearInterval(timer), 1000);
+    });
+  })();
+</script> 
+
+
+
+
+
+<!-- ==========================================
+      EXPERT MEDICAL CARE ROTATING CAROUSEL
+=========================================== -->
+<section class="rt-slider-v1 rt-overflow-hidden">
+  <div class="w-layout-blockcontainer rt-container-extra-large w-container">
+    
+    <!-- HEADING WRAP -->
+    <div class="rt-slider-v1-heading-wrap rt-text-center rt-top-content-gap">
+      <div class="rt-overflow-hidden">
+        <h2 class="rt-gap-off rt-text-center">
+          Where expert medical care meets compassionate treatments
+        </h2>
+      </div>
+    </div>
+
+    <!-- 3D CAROUSEL STAGE -->
+    <div class="w-layout-hflex rt-feature-v1-wrap-center rt-slider-v1-image-wrapper rt-overflow-hidden" id="carousel-stage">
+      <div class="rt-slider-v1-images-wrapper">
+        <div class="rt-slider-v1-image-container rt-position-relative">
+
+          <!-- Card 1 -->
+          <div class="rt-slider-v1-image-one carousel-item" data-index="0">
+            <div class="rt-position-relative rt-border-radius-10 rt-overflow-hidden card-box">
+              <img width="410" height="660" alt="General medical consultation" src="https://cdn.prod.website-files.com/696f017270bc35c55e784979/698c6cab60936ed8971b19b8_20665f37ec0b760eb82aebcf3b7be140_Slider%20Five.avif" class="rt-slider-v1-image rt-tab-image-auto">
+              <div class="w-layout-hflex rt-slider-v1-image-contant-text one">
+                <div class="rt-text-style-h6 rt-text-color-white rt-text-center">General medical consultation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="rt-slider-v1-image-two carousel-item" data-index="1">
+            <div class="rt-position-relative rt-border-radius-10 rt-overflow-hidden card-box">
+              <img width="410" height="660" alt="Health consultation" src="https://cdn.prod.website-files.com/696f017270bc35c55e784979/698c6cab60936ed8971b19c7_1df29b15209b6a13610a59459df78dcb_Slider%20Three.avif" class="rt-slider-v1-image rt-tab-image-auto">
+              <div class="w-layout-hflex rt-slider-v1-image-contant-text two">
+                <div class="rt-text-style-h6 rt-text-color-white rt-text-center">Health consultation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="rt-slider-v1-image-three carousel-item" data-index="2">
+            <div class="rt-position-relative rt-border-radius-10 rt-overflow-hidden card-box">
+              <img width="410" height="660" alt="Primary consultation" src="https://cdn.prod.website-files.com/696f017270bc35c55e784979/698c6cab60936ed8971b19bd_d1e3647f0c842efeb7f54d91f159520a_Slider%20Four.avif" class="rt-slider-v1-image rt-tab-image-auto">
+              <div class="w-layout-hflex rt-slider-v1-image-contant-text three">
+                <div class="rt-text-style-h6 rt-text-color-white rt-text-center">Primary consultation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="rt-slider-v1-image-four carousel-item" data-index="3">
+            <div class="rt-position-relative rt-border-radius-10 rt-overflow-hidden card-box">
+              <img width="410" height="660" alt="General checkup" src="https://cdn.prod.website-files.com/696f017270bc35c55e784979/698c6cab60936ed8971b19c2_2af7d7f64b037d53d8d6cfaf2a7a5648_Slider%20one.avif" class="rt-slider-v1-image rt-tab-image-auto">
+              <div class="w-layout-hflex rt-slider-v1-image-contant-text four">
+                <div class="rt-text-style-h6 rt-text-color-white rt-text-center">General checkup</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="rt-slider-v1-image-five carousel-item" data-index="4">
+            <div class="rt-position-relative rt-border-radius-10 rt-overflow-hidden card-box">
+              <img width="410" height="660" alt="Health check" src="https://cdn.prod.website-files.com/696f017270bc35c55e784979/698c6cab60936ed8971b19cc_07b9e4304ccc2c919762b4dba6e5b2e7_Slider%20Two.avif" class="rt-slider-v1-image rt-tab-image-auto">
+              <div class="w-layout-hflex rt-slider-v1-image-contant-text five">
+                <div class="rt-text-style-h6 rt-text-color-white rt-text-center">Health check</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+      STYLES (Drop-in CSS matching your snippet)
+=========================================== -->
+<style>
+  .rt-slider-v1 {
+    padding: 90px 0;
+    background-color: #ffffff;
+    color: #002A5C;
+    position: relative;
+    overflow: hidden;
+  }
+  .rt-container-extra-large {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .rt-slider-v1-heading-wrap {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .rt-slider-v1-heading-wrap h2 {
+    color: #002A5C;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .rt-slider-v1-heading-wrap h2 {
+      font-size: 28px;
+    }
+  }
+
+  /* 3D Perspective Stage */
+  .rt-slider-v1-image-wrapper {
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  .rt-slider-v1-images-wrapper,
+  .rt-slider-v1-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+  }
+
+  /* Individual 3D Cards */
+  .carousel-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .card-box {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    width: 290px;
+    height: 440px;
+    box-shadow: 0 15px 35px -5px rgba(0, 42, 92, 0.18), 0 8px 16px -6px rgba(0, 42, 92, 0.1);
+    background-color: #002A5C;
+  }
+  @media (max-width: 640px) {
+    .card-box {
+      width: 230px;
+      height: 350px;
+    }
+    .rt-slider-v1-image-wrapper {
+      height: 420px;
+    }
+  }
+  .card-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* Content Text: only visible on the center card */
+  .rt-slider-v1-image-contant-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 32px 20px 24px;
+    background: linear-gradient(180deg, rgba(0, 42, 92, 0) 0%, rgba(0, 42, 92, 0.65) 40%, rgba(0, 42, 92, 0.92) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+    opacity: 0; /* Dynamic GSAP opacity */
+  }
+  .rt-text-style-h6 {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 640px) {
+    .rt-text-style-h6 {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<!-- ==========================================
+      GSAP AUTOMATIC 3D ROTATION ENGINE
+=========================================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = Array.from(document.querySelectorAll(".carousel-item"));
+    const stage = document.getElementById("carousel-stage");
+    const total = cards.length;
+    const step = (2 * Math.PI) / total;
+
+    // Responsive radii matching the Webflow proportions (-24rem to -48rem depth)
+    function getRadius() {
+      const w = window.innerWidth;
+      if (w < 640) return { rx: 180, rz: 320, maxRot: 32 };
+      if (w < 1024) return { rx: 270, rz: 420, maxRot: 36 };
+      return { rx: 370, rz: 500, maxRot: 38 };
+    }
+
+    // Continuous orbital angle in radians
+    const state = { angle: 0 };
+
+    // Index of the currently centered card
+    function getActiveIndex() {
+      let norm = (-state.angle % (2 * Math.PI));
+      if (norm < 0) norm += 2 * Math.PI;
+      return Math.round(norm / step) % total;
+    }
+
+    function render() {
+      const { rx, rz, maxRot } = getRadius();
+
+      cards.forEach((card, i) => {
+        // Continuous orbital angle
+        const cardAngle = state.angle + i * step;
+
+        // Relative angle from front [ -PI, PI ]
+        const relAngle = ((cardAngle % (2 * Math.PI)) + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
+
+        // X displacement along 3D cylinder
+        const x = Math.sin(relAngle) * rx;
+
+        // Depth factor (1 at center front, 0 at back)
+        const cosFactor = (Math.cos(relAngle) + 1) / 2;
+        const z = (Math.cos(relAngle) - 1) * rz;
+
+        // Rotation facing inward
+        const rotY = -Math.sin(relAngle) * maxRot;
+
+        // Subtle scale and opacity
+        const scale = 0.78 + 0.22 * Math.pow(cosFactor, 1.2);
+        const opacity = 0.4 + 0.6 * Math.pow(cosFactor, 1.3);
+        const zIndex = Math.round(cosFactor * 100);
+
+        // Apply 3D transforms
+        gsap.set(card, {
+          xPercent: -50,
+          yPercent: -50,
+          x: x,
+          z: z,
+          rotationY: rotY,
+          scale: scale,
+          opacity: opacity,
+          zIndex: zIndex
+        });
+
+        // TEXT DISPLAY: only visible when the card is in the middle!
+        const textOverlay = card.querySelector(".rt-slider-v1-image-contant-text");
+        if (textOverlay) {
+          const distFromCenter = Math.abs(relAngle);
+          let textOpacity = Math.max(0, 1 - (distFromCenter / (step * 0.7)));
+          textOpacity = Math.pow(textOpacity, 1.5);
+
+          gsap.set(textOverlay, {
+            opacity: textOpacity
+          });
+        }
+      });
+    }
+
+    // Rotate to index by the shortest angular path
+    function rotateToIndex(targetIndex, duration = 0.9) {
+      const targetBase = -targetIndex * step;
+      let diff = ((targetBase - state.angle) % (2 * Math.PI));
+      if (diff > Math.PI) diff -= 2 * Math.PI;
+      if (diff < -Math.PI) diff += 2 * Math.PI;
+
+      const newTarget = state.angle + diff;
+
+      gsap.killTweensOf(state);
+      gsap.to(state, {
+        angle: newTarget,
+        duration: duration,
+        ease: "power2.out",
+        onUpdate: render
+      });
+    }
+
+    function rotateNext() {
+      const nextIdx = (getActiveIndex() + 1) % total;
+      rotateToIndex(nextIdx, 0.9);
+    }
+
+    // Initial render
+    render();
+
+    // ==========================================
+    // AUTOMATIC ROTATION ENGINE (Rotates every 3s)
+    // ==========================================
+    let autoInterval = null;
+    let isUserInteracting = false;
+    let resumeTimeout = null;
+
+    function startAutoRotation() {
+      if (autoInterval) clearInterval(autoInterval);
+      autoInterval = setInterval(() => {
+        if (!isUserInteracting) {
+          rotateNext();
+        }
+      }, 3000); // 3 seconds per rotation
+    }
+
+    function temporarilyPauseAuto(duration = 2500) {
+      isUserInteracting = true;
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+      resumeTimeout = setTimeout(() => {
+        isUserInteracting = false;
+      }, duration);
+    }
+
+    // Starts immediately on page load
+    startAutoRotation();
+
+    // Click any card to bring it to center (pauses momentarily then resumes)
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const idx = parseInt(card.dataset.index, 10);
+        temporarilyPauseAuto(3500);
+        rotateToIndex(idx);
+      });
+    });
+
+    // Touch & Mouse Dragging / Swiping
+    let isDragging = false;
+    let startX = 0;
+    let startAngle = 0;
+
+    function onPointerDown(e) {
+      isDragging = true;
+      isUserInteracting = true;
+      startX = e.clientX || (e.touches && e.touches[0].clientX);
+      startAngle = state.angle;
+      gsap.killTweensOf(state);
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const currentX = e.clientX || (e.touches && e.touches[0].clientX);
+      const diffX = currentX - startX;
+      state.angle = startAngle + diffX * 0.0035;
+      render();
+    }
+
+    function onPointerUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      rotateToIndex(getActiveIndex(), 0.5);
+      temporarilyPauseAuto(2500); // Resumes automatic movement after dragging
+    }
+
+    stage.addEventListener("mousedown", onPointerDown);
+    window.addEventListener("mousemove", onPointerMove);
+    window.addEventListener("mouseup", onPointerUp);
+
+    stage.addEventListener("touchstart", onPointerDown, { passive: true });
+    window.addEventListener("touchmove", onPointerMove, { passive: true });
+    window.addEventListener("touchend", onPointerUp);
+
+    window.addEventListener("resize", render);
+  });
+</script>
