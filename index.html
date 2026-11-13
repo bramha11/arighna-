@@ -571,8 +571,8 @@
 <section id="cns-dna-section" class="relative w-full min-h-screen bg-white overflow-hidden flex items-center justify-center font-['Plus_Jakarta_Sans',sans-serif]">
   
   <!-- Full-Screen 3D DNA Model Layer
-       The Spline viewer + scene are only loaded when this section comes near the
-       screen, and the 3D pauses whenever the section is off-screen (script below). -->
+       The Spline viewer + scene load in the background right after the page has
+       loaded, and the 3D pauses whenever the section is off-screen (script below). -->
   <div id="cns-spline-mount" class="cns-3d absolute inset-0 w-full h-full z-0 pointer-events-auto" data-scene="./assets/3d/scene.splinecode"></div>
 
   <!-- Dynamic 1500px Content Layer -->
@@ -600,7 +600,7 @@
 </section>
 
 
-<!-- 3D DNA: load on approach, pause off-screen, hide the Spline watermark once -->
+<!-- 3D DNA: load in the background after the page, pause off-screen, hide the Spline watermark once -->
 <style>
   #cns-spline-mount spline-viewer { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease; background: #FFFFFF; }
   #cns-spline-mount spline-viewer.is-ready { opacity: 1; }
@@ -634,7 +634,8 @@
     function syncPlayback() {
       const active = onScreen && document.visibilityState === "visible";
       // off-screen: take the 3D canvas out of rendering completely and pause the scene
-      if (viewer) viewer.style.display = active ? "" : "none";
+      // (only once it has loaded, so it can finish loading in the background)
+      if (viewer && viewer.classList.contains("is-ready")) viewer.style.display = active ? "" : "none";
       const a = app();
       if (a && typeof a.stop === "function") { if (active) a.play(); else a.stop(); }
     }
@@ -657,6 +658,7 @@
       viewer = document.createElement("spline-viewer");
       viewer.id = "cns-spline";
       viewer.setAttribute("loading-anim-type", "none");
+      viewer.setAttribute("loading", "eager");   // load now, not only once it is on screen
       viewer.setAttribute("url", mount.dataset.scene);
       viewer.addEventListener("load-complete", () => {
         // the scene file has its own (grey) background: make it white
@@ -669,16 +671,24 @@
       mount.appendChild(viewer);
     }
 
-    // start loading a little before the section scrolls into view
+    // Load in the background as soon as the page itself has finished loading, so the
+    // 3D is ready before the visitor scrolls to it (it never slows the first view).
+    function startWhenIdle() {
+      if ("requestIdleCallback" in window) requestIdleCallback(create, { timeout: 1500 });
+      else setTimeout(create, 300);
+    }
+    if (document.readyState === "complete") startWhenIdle();
+    else window.addEventListener("load", startWhenIdle, { once: true });
+    // backup: if the visitor scrolls there before that, start right away
     new IntersectionObserver((entries, io) => {
       if (entries[0].isIntersecting) { create(); io.disconnect(); }
-    }, { rootMargin: "600px 0px" }).observe(section);
+    }, { rootMargin: "1200px 0px" }).observe(section);
 
-    // only render while the section is on screen
+    // only render while the section is on (or about to come on) screen
     new IntersectionObserver((entries) => {
       onScreen = entries[0].isIntersecting;
       syncPlayback();
-    }, { rootMargin: "80px 0px" }).observe(section);
+    }, { rootMargin: "400px 0px" }).observe(section);
     document.addEventListener("visibilitychange", syncPlayback);
   })();
 </script> 
