@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Careers - Arighna Pharma</title>
+  <link rel="icon" type="image/png" href="assets/Photos/logo-mark.png" />
+  <link rel="apple-touch-icon" href="assets/Photos/logo-mark.png" />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +37,7 @@
 
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
     html, body {
@@ -42,136 +45,132 @@
       overflow-x: hidden;
     }
   </style>
+  <!-- Mobile / tablet responsive layer (desktop unaffected) -->
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <script src="js/responsive.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/hero-rotate.js" defer></script>
 </head>
 <body class="bg-white text-[#002A5C] font-sans antialiased selection:bg-[#0493BB] selection:text-white flex flex-col items-center">
 
   <!-- ==========================================
         SECTION 1: NAVBAR
   =========================================== -->
-  <header class="navbar fixed top-0 left-0 w-full z-50 pt-12 pb-8 transition-none bg-white/80 backdrop-blur-md border-b border-slate-100">
-    <div class="max-w-[1500px] mx-auto px-6 lg:px-12 flex justify-between items-center">
+<!-- Shared navbar markup (same on every page). Behaviour: js/navbar.js. Home = transparent over hero, white on scroll. -->
+<header class="navbar fixed top-0 left-0 w-full z-50 pt-12 pb-8 transition-none bg-white/80 backdrop-blur-md border-b border-slate-100" data-nav="light">
+  <div class="max-w-[1500px] mx-auto px-6 lg:px-12 flex justify-between items-center">
 
-      <!-- Brand Logo -->
-      <a href="index.html" class="nav-element text-2xl font-extrabold tracking-tight text-[#002A5C] hover:opacity-90 transition-opacity">
-        ARIGHNA PHARMA
-      </a>
+    <!-- Brand Logo -->
+    <a href="index.html" class="nav-element nav-logo-link text-[#002A5C] hover:opacity-90 transition-opacity">
+      <img src="assets/Photos/logo-horizontal.png" alt="Arighna Pharma" class="nav-logo nav-logo-color" width="991" height="170" />
+    </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center gap-8 xl:gap-10 text-[16px] font-normal">
+    <!-- Desktop Navigation Menu -->
+    <nav class="hidden lg:flex items-center gap-8 xl:gap-10 text-[16px] font-normal" aria-label="Main">
+      <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
+        <a href="about.html" class="hover:text-[#0493BB] transition-colors">About Us</a>
+        <button class="focus:outline-none flex items-center" aria-label="Toggle About Us menu">
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+        </button>
 
-        <!-- 1. About Us Hyperlink + Dropdown -->
-        <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
-          <a href="about.html" class="hover:text-[#0493BB] transition-colors">About Us</a>
-          <button class="focus:outline-none flex items-center" aria-label="Toggle About Us menu">
-            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
-          </button>
-
-          <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
-            <a href="about.html#overview" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Overview</a>
-            <a href="about.html#board-of-directors" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Board Of Director</a>
-            <a href="about.html#core-values" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Core Values</a>
-            <a href="about.html#investor-relations" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Investor Relations</a>
-          </div>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
+          <a href="about.html#about-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Overview</a>
+          <a href="about.html#board-of-directors" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Board Of Directors</a>
+          <a href="team.html" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Leadership Team</a>
+          <a href="about.html#core-values" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Core Values</a>
+          <a href="about.html#investor-relations" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Investor Relations</a>
         </div>
-
-        <!-- 2. Products -->
-        <a href="index.html#products" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Products</a>
-
-        <!-- 3. Beyond Business Hyperlink + Dropdown -->
-        <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
-          <a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors">Beyond Business</a>
-          <button class="focus:outline-none flex items-center" aria-label="Toggle Beyond Business menu">
-            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
-          </button>
-
-          <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
-            <a href="beyond-business.html#division" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Division</a>
-            <a href="beyond-business.html#vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Vision</a>
-            <a href="beyond-business.html#objective" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Objective</a>
-            <a href="beyond-business.html#geographic-vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Geographic Vision</a>
-            <a href="beyond-business.html#commitment-to-society" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Commitment to Society</a>
-          </div>
-        </div>
-
-        <!-- 4. Careers (Active Page) -->
-        <a href="careers.html" class="nav-element text-[#0493BB] font-semibold transition-colors">Careers</a>
-
-        <!-- 5. Blogs -->
-        <a href="blogs.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Blogs</a>
-
-      </nav>
-
-      <!-- Right Action Buttons -->
-      <div class="flex items-center gap-3">
-        <!-- Log In Button -->
-        <a id="navLoginBtn" href="#login" class="nav-btn bg-[#002A5C] text-white font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block hover:bg-[#0493BB] transition-colors">
-          <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
-            <span class="btn-text block text-[16px] font-semibold leading-[24px]">Log In</span>
-            <span class="btn-text block text-[16px] font-semibold leading-[24px]">Log In</span>
-          </div>
-        </a>
-
-        <!-- Contact Button -->
-        <a id="navContactBtn" href="contact.html" class="nav-btn bg-[#002A5C] text-white font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block hover:bg-[#0493BB] transition-colors">
-          <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
-            <span class="btn-text block text-[16px] font-semibold leading-[24px]">Contact</span>
-            <span class="btn-text block text-[16px] font-semibold leading-[24px]">Contact</span>
-          </div>
-        </a>
       </div>
+      <a href="products.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Products</a>
+      <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
+        <a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors">Beyond Business</a>
+        <button class="focus:outline-none flex items-center" aria-label="Toggle Beyond Business menu">
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+        </button>
 
+        <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
+          <a href="beyond-business.html#objective" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Objective</a>
+          <a href="beyond-business.html#therapeutics-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Our Focus Areas</a>
+          <a href="beyond-business.html#vision-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Vision</a>
+          <a href="beyond-business.html#geographic-vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Geographic Vision</a>
+          <a href="beyond-business.html#discovery-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Commitment to Society</a>
+        </div>
+      </div>
+      <a href="careers.html" class="nav-element text-[#0493BB] font-semibold transition-colors" aria-current="page">Careers</a>
+      <a href="blogs.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Blogs</a>
+    </nav>
+
+    <!-- Right Action Buttons -->
+    <div class="flex items-center gap-3">
+      <a id="navLoginBtn" href="#login" class="btn-roll nav-btn font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block">
+        <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]">Log In</span>
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]" aria-hidden="true">Log In</span>
+        </div>
+      </a>
+      <a id="navContactBtn" href="contact.html" class="btn-roll nav-btn font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block">
+        <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]">Contact</span>
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]" aria-hidden="true">Contact</span>
+        </div>
+      </a>
     </div>
-  </header>
+
+  </div>
+</header>
 
 
   <!-- ==========================================
         SECTION 2: CAREERS HERO SECTION
   =========================================== -->
-  <section class="w-full pt-36 pb-20 px-6 lg:px-12 bg-white relative overflow-hidden">
+  <section class="w-full pt-36 pb-12 md:pb-20 px-6 lg:px-12 bg-white relative overflow-hidden">
     <div class="max-w-[1500px] mx-auto w-full">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
         
         <!-- LEFT COLUMN: HEADING & DESCRIPTION -->
         <div class="lg:col-span-6 flex flex-col justify-center">
           
-          <h1 class="text-[42px] sm:text-[52px] lg:text-[60px] font-medium tracking-tight leading-[1.12] text-[#002A5C] mb-6">
-            Shape the future of <br />
-            <span class="text-[#0493BB] font-semibold">global healthcare with us.</span>
+          <h1 class="t-hero text-[#002A5C] mb-6">
+            Join us for a <br />
+            <span class="text-[#0493BB] font-semibold">healthier future.</span>
           </h1>
 
-          <p class="text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl mb-8">
-            Join a forward-thinking team committed to breakthrough pharmaceutical innovation, clinical excellence, and life-changing patient outcomes across the globe.
+          <p class="t-lead text-[#475569] max-w-xl mb-8">
+            Be a part of our journey to bring better health and brighter tomorrows to communities across India.
           </p>
 
-          <div class="flex items-center gap-4">
-            <a href="#openings" class="bg-[#002A5C] hover:bg-[#0493BB] text-white font-semibold px-8 py-4 rounded-[40px] text-[16px] shadow-md transition-all duration-300">
-              View Open Roles
+          <div class="hero-actions flex flex-wrap items-center gap-4">
+            <a href="#openings" class="btn-roll font-semibold px-8 py-4 rounded-[40px] text-[16px] shadow-md">
+              <span class="btn-roll-mask"><span class="btn-text">View Open Roles</span><span class="btn-text" aria-hidden="true">View Open Roles</span></span>
             </a>
-            <a href="#apply" class="border border-slate-200 text-[#002A5C] hover:border-[#0493BB] hover:text-[#0493BB] font-semibold px-8 py-4 rounded-[40px] text-[16px] transition-all duration-300">
-              Apply Now
+            <a href="#apply" class="btn-roll font-semibold px-8 py-4 rounded-[40px] text-[16px]">
+              <span class="btn-roll-mask"><span class="btn-text">Apply Now</span><span class="btn-text" aria-hidden="true">Apply Now</span></span>
             </a>
           </div>
 
         </div>
 
         <!-- RIGHT COLUMN: UNIFORM 2-COLUMN FLEX GRID (PLACEHOLDERS) -->
-        <div class="lg:col-span-6 pt-12 lg:pt-16 grid grid-cols-2 gap-6 sm:gap-8 items-start">
+        <div class="lg:col-span-6 pt-2 sm:pt-12 lg:pt-16 grid grid-cols-2 gap-6 sm:gap-8 items-start" data-hero-rotate>
           
           <!-- Column 1 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 1 (Taller Height) -->
-            <div class="w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"></div>
+            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
             <!-- Box 3 (Standard Height) -->
-            <div class="w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"></div>
+            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
           </div>
 
           <!-- Column 2 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 2 (Standard Height) -->
-            <div class="w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"></div>
+            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
             <!-- Box 4 (Taller Height) -->
-            <div class="w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"></div>
+            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
           </div>
 
         </div>
@@ -183,77 +182,79 @@
 
 
   <!-- ==========================================
-        SECTION 3: OPEN POSITIONS LISTINGS
+        SECTION 3: OPEN POSITIONS
+        Header + roles as a clean divider list. "Apply" preselects the role
+        in the form below (script at the end of the page).
   =========================================== -->
-  <section id="openings" class="w-full py-24 px-6 lg:px-12 bg-white">
+  <section id="openings" class="w-full py-12 md:py-24 px-6 lg:px-12 bg-white text-[#002A5C]">
     <div class="max-w-[1500px] mx-auto w-full">
-      
-      <!-- Section Heading -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-[34px] sm:text-[42px] lg:text-[48px] font-medium tracking-tight text-[#002A5C] mb-4">
-          Current Career <span class="text-[#0493BB] font-semibold">Opportunities</span>
-        </h2>
-        <p class="text-base sm:text-lg text-[#475569] leading-relaxed">
+
+      <!-- HEADER: heading (left) + description (right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-end mb-10 lg:mb-16">
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4">
+            <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+            <span>Open Roles</span>
+          </div>
+          <h2 class="t-section text-[#002A5C]">
+            Current career <span class="text-[#0493BB] font-semibold">opportunities.</span>
+          </h2>
+        </div>
+        <p class="t-lead lg:col-span-5 font-normal text-[#475569] lg:pb-1">
           Explore our current openings and find your place in an organization dedicated to driving healthcare excellence forward.
         </p>
       </div>
 
-      <!-- Job Cards Container -->
-      <div class="flex flex-col gap-6 max-w-5xl mx-auto">
-        
-        <!-- Job Card 1: Business Manager -->
-        <div class="bg-white rounded-[24px] p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div class="w-16 h-16 rounded-[20px] bg-[#0493BB]/10 flex items-center justify-center shrink-0">
-            <i data-lucide="user-check" class="w-8 h-8 text-[#0493BB]"></i>
-          </div>
-          <div class="flex-1">
-            <h3 class="text-xl sm:text-2xl font-bold text-[#002A5C] mb-2">BUSINESS MANAGER</h3>
-            <p class="text-slate-600 text-[15px] sm:text-base leading-relaxed">
-              Do you have a passion for healthcare and the drive to succeed? Join our team of business managers across India! Make a real difference by promoting innovative medical brands to physicians, conducting retail audits, managing stockists, and prospecting for new business opportunities. We offer a dynamic environment, competitive compensation, and the chance to be part of <span class="text-[#0493BB] font-semibold">ARIGHNA FAMILY</span>.
-            </p>
-          </div>
-          <div class="shrink-0 w-full md:w-auto">
-            <a href="#apply" class="block text-center bg-[#002A5C] hover:bg-[#0493BB] text-white font-semibold px-6 py-3 rounded-[30px] text-sm transition-colors">
-              Apply Now
-            </a>
-          </div>
-        </div>
+      <!-- ROLES -->
+      <div class="border-b border-slate-200">
 
-        <!-- Job Card 2: ABM/RBM/ZBM -->
-        <div class="bg-white rounded-[24px] p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div class="w-16 h-16 rounded-[20px] bg-[#0493BB]/10 flex items-center justify-center shrink-0">
-            <i data-lucide="award" class="w-8 h-8 text-[#0493BB]"></i>
+        <!-- Role 1 -->
+        <article class="job-row border-t border-slate-200 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+          <div class="lg:col-span-4">
+            <h3 class="t-sub text-[#002A5C]">Business Manager</h3>
+            <p class="mt-2 text-[15px] font-semibold text-[#0493BB]">Field sales · Across India</p>
           </div>
-          <div class="flex-1">
-            <h3 class="text-xl sm:text-2xl font-bold text-[#002A5C] mb-2">ABM/RBM/ZBM</h3>
-            <p class="text-slate-600 text-[15px] sm:text-base leading-relaxed">
-              Are you a born leader with a passion for building high-performing teams? <span class="text-[#002A5C] font-semibold">ARIGHNA PHARMA</span> seek Field Managers at different levels across India! Drive sales growth by strategically managing and motivating your team of Business Managers. Develop relationships with Key Opinion Leaders (KOLs) and oversee stockist appointments and management. Join our award-winning team and be a part of shaping the future of healthcare.
-            </p>
-          </div>
-          <div class="shrink-0 w-full md:w-auto">
-            <a href="#apply" class="block text-center bg-[#002A5C] hover:bg-[#0493BB] text-white font-semibold px-6 py-3 rounded-[30px] text-sm transition-colors">
-              Apply Now
+          <p class="t-body text-[#475569] lg:col-span-6">
+            Do you have a passion for healthcare and the drive to succeed? Join our team of business managers across India! Make a real difference by promoting innovative medical brands to physicians, conducting retail audits, managing stockists, and prospecting for new business opportunities. We offer a dynamic environment, competitive compensation, and the chance to be part of the <span class="text-[#002A5C] font-semibold">Arighna family</span>.
+          </p>
+          <div class="lg:col-span-2 lg:flex lg:justify-end">
+            <a href="#apply" data-role="business-manager" class="job-apply btn-roll inline-flex font-semibold px-7 py-3 rounded-[30px] text-[15px]">
+              <span class="btn-roll-mask"><span class="btn-text">Apply</span><span class="btn-text" aria-hidden="true">Apply</span></span>
             </a>
           </div>
-        </div>
+        </article>
 
-        <!-- Job Card 3: Product Executives / Product Managers / Marketing Managers -->
-        <div class="bg-white rounded-[24px] p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div class="w-16 h-16 rounded-[20px] bg-[#0493BB]/10 flex items-center justify-center shrink-0">
-            <i data-lucide="megaphone" class="w-8 h-8 text-[#0493BB]"></i>
+        <!-- Role 2 -->
+        <article class="job-row border-t border-slate-200 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+          <div class="lg:col-span-4">
+            <h3 class="t-sub text-[#002A5C]">ABM / RBM / ZBM</h3>
+            <p class="mt-2 text-[15px] font-semibold text-[#0493BB]">Field management · Across India</p>
           </div>
-          <div class="flex-1">
-            <h3 class="text-xl sm:text-2xl font-bold text-[#002A5C] mb-2">Product Executives / Product Managers / Marketing Managers</h3>
-            <p class="text-slate-600 text-[15px] sm:text-base leading-relaxed">
-              Calling all strategic thinkers and passionate product champions! <span class="text-[#002A5C] font-semibold">ARIGHNA PHARMA</span> seeks Product Executives/Managers for our Mumbai offices. Be the mastermind behind our brands – conducting market research, launching new products, crafting scientific materials, designing marketing collaterals, and building relationships with Key Opinion Leaders (KOLs). Develop deep market understanding and bring innovative healthcare solutions to life. Join our <span class="text-[#0493BB] font-semibold">ARIGHNA FAMILY</span> and make a lasting impact!
-            </p>
-          </div>
-          <div class="shrink-0 w-full md:w-auto">
-            <a href="#apply" class="block text-center bg-[#002A5C] hover:bg-[#0493BB] text-white font-semibold px-6 py-3 rounded-[30px] text-sm transition-colors">
-              Apply Now
+          <p class="t-body text-[#475569] lg:col-span-6">
+            Are you a born leader with a passion for building high-performing teams? <span class="text-[#002A5C] font-semibold">Arighna Pharma</span> seeks Field Managers at different levels across India! Drive sales growth by strategically managing and motivating your team of Business Managers. Develop relationships with Key Opinion Leaders (KOLs) and oversee stockist appointments and management. Join our award-winning team and be a part of shaping the future of healthcare.
+          </p>
+          <div class="lg:col-span-2 lg:flex lg:justify-end">
+            <a href="#apply" data-role="abm-rbm-zbm" class="job-apply btn-roll inline-flex font-semibold px-7 py-3 rounded-[30px] text-[15px]">
+              <span class="btn-roll-mask"><span class="btn-text">Apply</span><span class="btn-text" aria-hidden="true">Apply</span></span>
             </a>
           </div>
-        </div>
+        </article>
+
+        <!-- Role 3 -->
+        <article class="job-row border-t border-slate-200 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+          <div class="lg:col-span-4">
+            <h3 class="t-sub text-[#002A5C]">Product Executive / Product Manager / Marketing Manager</h3>
+            <p class="mt-2 text-[15px] font-semibold text-[#0493BB]">Marketing · Mumbai</p>
+          </div>
+          <p class="t-body text-[#475569] lg:col-span-6">
+            Calling all strategic thinkers and passionate product champions! <span class="text-[#002A5C] font-semibold">Arighna Pharma</span> seeks Product Executives/Managers for our Mumbai offices. Be the mastermind behind our brands – conducting market research, launching new products, crafting scientific materials, designing marketing collaterals, and building relationships with Key Opinion Leaders (KOLs). Develop deep market understanding and bring innovative healthcare solutions to life. Join our <span class="text-[#002A5C] font-semibold">Arighna family</span> and make a lasting impact!
+          </p>
+          <div class="lg:col-span-2 lg:flex lg:justify-end">
+            <a href="#apply" data-role="product-manager" class="job-apply btn-roll inline-flex font-semibold px-7 py-3 rounded-[30px] text-[15px]">
+              <span class="btn-roll-mask"><span class="btn-text">Apply</span><span class="btn-text" aria-hidden="true">Apply</span></span>
+            </a>
+          </div>
+        </article>
 
       </div>
 
@@ -262,76 +263,49 @@
 
 
   <!-- ==========================================
-        SECTION 4: APPLY NOW FORM
+        SECTION 4: APPLY NOW
+        Intro + image placeholder (left) beside the application form (right)
   =========================================== -->
-  <section id="apply" class="w-full py-24 px-6 lg:px-12 bg-white">
-    <div class="max-w-3xl mx-auto w-full">
-      
-      <div class="bg-white rounded-[32px] p-8 sm:p-12 border border-slate-200 shadow-2xl relative overflow-hidden">
-        
-        <!-- Form Header -->
-        <div class="flex items-start gap-4 mb-8 pb-6 border-b border-slate-100">
-          <div class="w-14 h-14 rounded-[18px] bg-[#0493BB]/10 flex items-center justify-center shrink-0">
-            <i data-lucide="file-text" class="w-7 h-7 text-[#0493BB]"></i>
-          </div>
-          <div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#002A5C] tracking-tight mb-1">APPLY NOW</h2>
-            <p class="text-slate-500 text-sm sm:text-base">Take the next step in your career with Arighna Pharma.</p>
-          </div>
+  <section id="apply" class="w-full py-12 md:py-24 px-6 lg:px-12 bg-white text-[#002A5C]">
+    <div class="max-w-[1500px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-stretch">
+
+      <!-- LEFT: intro + image -->
+      <div class="lg:col-span-5 flex flex-col">
+        <div class="inline-flex self-start items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+          <span>Apply Now</span>
         </div>
+        <h2 class="t-section text-[#002A5C] mb-5">
+          Take the next step <span class="text-[#0493BB] font-semibold">in your career.</span>
+        </h2>
+        <p class="t-lead text-[#475569] mb-8 lg:mb-10">
+          Tell us a little about yourself and attach your resume. Don't see the right role? Choose "Other Openings" and we'll keep you in mind.
+        </p>
+        <!-- image placeholder: put an <img class="w-full h-full object-cover"> inside -->
+        <div class="hidden lg:block relative w-full flex-1 min-h-[240px] rounded-[24px] overflow-hidden bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="absolute inset-0 w-full h-full object-cover" /></div>
+      </div>
 
-        <!-- Application Form -->
-        <form action="#" method="POST" enctype="multipart/form-data" class="flex flex-col gap-6">
-          
-          <!-- Your Name -->
+      <!-- RIGHT: form -->
+      <div class="lg:col-span-7">
+        <form action="#" method="POST" enctype="multipart/form-data" class="bg-[#F8FAFC] border border-slate-100 rounded-[32px] p-6 sm:p-10 lg:p-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+
           <div class="flex flex-col gap-2">
-            <label for="applicant_name" class="text-sm font-semibold text-[#002A5C]">Your Name *</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                <i data-lucide="user" class="w-5 h-5"></i>
-              </span>
-              <input 
-                type="text" 
-                id="applicant_name" 
-                name="applicant_name" 
-                required 
-                placeholder="Enter your name" 
-                class="w-full pl-12 pr-5 py-3.5 rounded-[16px] bg-slate-50 border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:bg-white transition-all text-[15px]"
-              />
-            </div>
+            <label for="applicant_name" class="text-sm font-semibold text-[#002A5C]">Your name *</label>
+            <input type="text" id="applicant_name" name="applicant_name" required placeholder="Enter your name" autocomplete="name"
+              class="w-full px-5 py-3.5 rounded-[14px] bg-white border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:ring-4 focus:ring-[#0493BB]/10 transition-all text-[15px]" />
           </div>
 
-          <!-- Your Email -->
           <div class="flex flex-col gap-2">
-            <label for="applicant_email" class="text-sm font-semibold text-[#002A5C]">Your Email *</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                <i data-lucide="mail" class="w-5 h-5"></i>
-              </span>
-              <input 
-                type="email" 
-                id="applicant_email" 
-                name="applicant_email" 
-                required 
-                placeholder="Enter your email" 
-                class="w-full pl-12 pr-5 py-3.5 rounded-[16px] bg-slate-50 border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:bg-white transition-all text-[15px]"
-              />
-            </div>
+            <label for="applicant_email" class="text-sm font-semibold text-[#002A5C]">Your email *</label>
+            <input type="email" id="applicant_email" name="applicant_email" required placeholder="Enter your email" autocomplete="email"
+              class="w-full px-5 py-3.5 rounded-[14px] bg-white border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:ring-4 focus:ring-[#0493BB]/10 transition-all text-[15px]" />
           </div>
 
-          <!-- Position Applied -->
-          <div class="flex flex-col gap-2">
-            <label for="position_applied" class="text-sm font-semibold text-[#002A5C]">Position Applied *</label>
+          <div class="flex flex-col gap-2 sm:col-span-2">
+            <label for="position_applied" class="text-sm font-semibold text-[#002A5C]">Position applied for *</label>
             <div class="relative">
-              <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                <i data-lucide="briefcase" class="w-5 h-5"></i>
-              </span>
-              <select 
-                id="position_applied" 
-                name="position_applied" 
-                required 
-                class="w-full pl-12 pr-10 py-3.5 rounded-[16px] bg-slate-50 border border-slate-200 text-[#002A5C] focus:outline-none focus:border-[#0493BB] focus:bg-white transition-all text-[15px] appearance-none"
-              >
+              <select id="position_applied" name="position_applied" required
+                class="w-full px-5 pr-12 py-3.5 rounded-[14px] bg-white border border-slate-200 text-[#002A5C] focus:outline-none focus:border-[#0493BB] focus:ring-4 focus:ring-[#0493BB]/10 transition-all text-[15px] appearance-none">
                 <option value="" disabled selected>Select position</option>
                 <option value="business-manager">Business Manager</option>
                 <option value="abm-rbm-zbm">ABM / RBM / ZBM</option>
@@ -344,48 +318,33 @@
             </div>
           </div>
 
-          <!-- Covering Letter -->
-          <div class="flex flex-col gap-2">
-            <label for="covering_letter" class="text-sm font-semibold text-[#002A5C]">Covering Letter</label>
-            <div class="relative">
-              <span class="absolute top-3.5 left-4 pointer-events-none text-slate-400">
-                <i data-lucide="file-text" class="w-5 h-5"></i>
-              </span>
-              <textarea 
-                id="covering_letter" 
-                name="covering_letter" 
-                rows="4" 
-                placeholder="Write your message..." 
-                class="w-full pl-12 pr-5 py-3.5 rounded-[16px] bg-slate-50 border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:bg-white transition-all text-[15px] resize-none"
-              ></textarea>
-            </div>
+          <div class="flex flex-col gap-2 sm:col-span-2">
+            <label for="covering_letter" class="text-sm font-semibold text-[#002A5C]">Covering letter</label>
+            <textarea id="covering_letter" name="covering_letter" rows="5" placeholder="Write your message..."
+              class="w-full px-5 py-3.5 rounded-[14px] bg-white border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:ring-4 focus:ring-[#0493BB]/10 transition-all text-[15px] resize-none"></textarea>
           </div>
 
-          <!-- Upload Your Resume Here -->
-          <div class="flex flex-col gap-2">
-            <label for="resume_file" class="text-sm font-semibold text-[#002A5C]">Upload Your Resume Here *</label>
-            <div class="relative flex items-center bg-slate-50 border border-slate-200 rounded-[16px] px-3 py-2.5">
-              <span class="text-slate-400 pl-2 pr-3">
+          <div class="flex flex-col gap-2 sm:col-span-2">
+            <span class="text-sm font-semibold text-[#002A5C]">Upload your resume *</span>
+            <label for="resume_file" class="group cursor-pointer flex items-center gap-4 bg-white border border-dashed border-slate-300 hover:border-[#0493BB] rounded-[14px] px-5 py-4 transition-colors focus-within:border-[#0493BB] focus-within:ring-4 focus-within:ring-[#0493BB]/10">
+              <span class="w-10 h-10 shrink-0 rounded-full bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center">
                 <i data-lucide="paperclip" class="w-5 h-5"></i>
               </span>
-              <label class="cursor-pointer bg-white hover:bg-slate-100 border border-slate-200 text-[#002A5C] text-sm font-semibold px-4 py-2 rounded-[10px] transition-colors shadow-sm">
-                Choose File
-                <input type="file" id="resume_file" name="resume_file" required class="hidden" />
-              </label>
-              <span class="ml-4 text-slate-400 text-sm truncate">No file chosen</span>
-            </div>
+              <span class="flex flex-col min-w-0">
+                <span id="resume_name" class="text-[15px] font-semibold text-[#002A5C] truncate">Choose a file</span>
+                <span class="text-sm text-slate-500">PDF or Word document</span>
+              </span>
+              <input type="file" id="resume_file" name="resume_file" required accept=".pdf,.doc,.docx" class="sr-only" />
+            </label>
           </div>
 
-          <!-- Submit Button -->
-          <button 
-            type="submit" 
-            class="w-full bg-[#002A5C] hover:bg-[#0493BB] text-white font-semibold py-4 rounded-[40px] text-[16px] shadow-md transition-all duration-300 flex items-center justify-center gap-2 mt-4"
-          >
-            Submit
-          </button>
+          <div class="sm:col-span-2 pt-2">
+            <button type="submit" class="btn-roll font-semibold px-10 py-4 rounded-[40px] text-[16px] shadow-md w-full sm:w-auto">
+              <span class="btn-roll-mask"><span class="btn-text">Submit application</span><span class="btn-text" aria-hidden="true">Submit application</span></span>
+            </button>
+          </div>
 
         </form>
-
       </div>
 
     </div>
@@ -413,12 +372,9 @@
       <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
         <div>
           <!-- Company Logo -->
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-[#0493BB] flex items-center justify-center font-bold text-xl text-white shadow-md">
-              A
-            </div>
-            <span class="text-2xl font-extrabold tracking-tight text-white">ARIGHNA PHARMA</span>
-          </div>
+          <a href="index.html" class="inline-block mb-6 hover:opacity-90 transition-opacity" aria-label="Arighna Pharma home">
+            <img src="assets/Photos/logo-horizontal-white.png" alt="Arighna Pharma" class="h-11 sm:h-12 w-auto" width="991" height="170" />
+          </a>
 
           <!-- Description / Tagline -->
           <p class="text-white/70 text-base leading-relaxed max-w-sm mb-8 font-normal">
@@ -432,7 +388,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <span>Headquartered in West Bengal, India</span>
+              <span>PL-5-B, 11/1, Sector 1, New Panvel (West), Mumbai, Maharashtra - 410206</span>
             </div>
 
             <div class="flex items-center gap-3">
@@ -446,7 +402,7 @@
               <svg class="w-5 h-5 text-[#0493BB] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
               </svg>
-              <a href="tel:+911234567890" class="hover:text-[#0493BB] transition-colors duration-200">+91 (123) 456-7890</a>
+              <a href="tel:+919830334724" class="hover:text-[#0493BB] transition-colors duration-200">9830334724</a>
             </div>
           </div>
         </div>
@@ -454,28 +410,28 @@
         <!-- Social Icons -->
         <div class="flex items-center gap-3 pt-2">
           <!-- Facebook -->
-          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
           </a>
 
           <!-- Instagram -->
-          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
 
           <!-- X (Twitter) -->
-          <a href="#" aria-label="X" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="X" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
           </a>
 
           <!-- LinkedIn -->
-          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
@@ -490,10 +446,11 @@
         <div>
           <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Our Story</h3>
           <ul class="space-y-3 text-sm text-white/70">
-            <li><a href="#overview" class="hover:text-[#0493BB] transition-colors duration-200">Overview</a></li>
-            <li><a href="#board-of-directors" class="hover:text-[#0493BB] transition-colors duration-200">Board Of Directors</a></li>
-            <li><a href="#core-values" class="hover:text-[#0493BB] transition-colors duration-200">Core Values</a></li>
-            <li><a href="#products" class="hover:text-[#0493BB] transition-colors duration-200">Products</a></li>
+            <li><a href="about.html#about-section" class="hover:text-[#0493BB] transition-colors duration-200">Overview</a></li>
+            <li><a href="about.html#board-of-directors" class="hover:text-[#0493BB] transition-colors duration-200">Board Of Directors</a></li>
+            <li><a href="team.html" class="hover:text-[#0493BB] transition-colors duration-200">Leadership Team</a></li>
+            <li><a href="about.html#core-values" class="hover:text-[#0493BB] transition-colors duration-200">Core Values</a></li>
+            <li><a href="products.html" class="hover:text-[#0493BB] transition-colors duration-200">Products</a></li>
           </ul>
         </div>
 
@@ -501,11 +458,11 @@
         <div>
           <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Beyond Business</h3>
           <ul class="space-y-3 text-sm text-white/70">
-            <li><a href="#division" class="hover:text-[#0493BB] transition-colors duration-200">Division</a></li>
-            <li><a href="#vision" class="hover:text-[#0493BB] transition-colors duration-200">Vision</a></li>
-            <li><a href="#objective" class="hover:text-[#0493BB] transition-colors duration-200">Objective</a></li>
-            <li><a href="#geographic-vision" class="hover:text-[#0493BB] transition-colors duration-200">Geographic Vision</a></li>
-            <li><a href="#commitment-to-society" class="hover:text-[#0493BB] transition-colors duration-200">Commitment to Society</a></li>
+            <li><a href="beyond-business.html#objective" class="hover:text-[#0493BB] transition-colors duration-200">Objective</a></li>
+            <li><a href="beyond-business.html#therapeutics-section" class="hover:text-[#0493BB] transition-colors duration-200">Our Focus Areas</a></li>
+            <li><a href="beyond-business.html#vision-section" class="hover:text-[#0493BB] transition-colors duration-200">Vision</a></li>
+            <li><a href="beyond-business.html#geographic-vision" class="hover:text-[#0493BB] transition-colors duration-200">Geographic Vision</a></li>
+            <li><a href="beyond-business.html#discovery-section" class="hover:text-[#0493BB] transition-colors duration-200">Commitment to Society</a></li>
           </ul>
         </div>
 
@@ -513,10 +470,13 @@
         <div class="col-span-2 sm:col-span-1">
           <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Quick Links</h3>
           <ul class="space-y-3 text-sm text-white/70">
-            <li><a href="#investor-relations" class="hover:text-[#0493BB] transition-colors duration-200">Investor Relations</a></li>
-            <li><a href="#careers" class="hover:text-[#0493BB] transition-colors duration-200">Careers</a></li>
-            <li><a href="#blogs" class="hover:text-[#0493BB] transition-colors duration-200">Blogs</a></li>
-            <li><a href="#contact" class="hover:text-[#0493BB] transition-colors duration-200">Contact Us</a></li>
+            <li><a href="index.html" class="hover:text-[#0493BB] transition-colors duration-200">Home</a></li>
+            <li><a href="about.html" class="hover:text-[#0493BB] transition-colors duration-200">About Us</a></li>
+            <li><a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors duration-200">Beyond Business</a></li>
+            <li><a href="about.html#investor-relations" class="hover:text-[#0493BB] transition-colors duration-200">Investor Relations</a></li>
+            <li><a href="careers.html" class="hover:text-[#0493BB] transition-colors duration-200">Careers</a></li>
+            <li><a href="blogs.html" class="hover:text-[#0493BB] transition-colors duration-200">Blogs</a></li>
+            <li><a href="contact.html" class="hover:text-[#0493BB] transition-colors duration-200">Contact Us</a></li>
           </ul>
         </div>
 
@@ -554,6 +514,18 @@
   <!-- Lucide Icons Initialization Script -->
   <script>
     lucide.createIcons();
+
+    // Careers: "Apply" on a role preselects it in the form; the upload shows the chosen file name
+    (function () {
+      var select = document.getElementById("position_applied");
+      document.querySelectorAll(".job-apply").forEach(function (a) {
+        a.addEventListener("click", function () { if (select) select.value = a.getAttribute("data-role"); });
+      });
+      var file = document.getElementById("resume_file"), name = document.getElementById("resume_name");
+      if (file && name) file.addEventListener("change", function () {
+        name.textContent = file.files && file.files.length ? file.files[0].name : "Choose a file";
+      });
+    })();
   </script>
 
 </body>

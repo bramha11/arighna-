@@ -1,0 +1,62 @@
+/* =====================================================================
+   ARIGHNA PHARMA — SHARED BUTTON STYLE (every page)
+   ---------------------------------------------------------------------
+   .btn-roll  → lighter brand teal by default, darker navy on hover, with
+                the rolling-text hover from the navbar buttons.
+   Markup (two identical labels stacked inside a mask):
+     <a class="btn-roll ...">
+       <span class="btn-roll-mask">
+         <span class="btn-text">Label</span>
+         <span class="btn-text" aria-hidden="true">Label</span>
+       </span>
+     </a>
+   (Older buttons use a div.relative.h-[24px].overflow-hidden as the mask —
+    that works too.)
+   .on-dark   → for buttons sitting on the dark hero: adds a soft white ring
+                on hover so the navy state stays visible.
+   ===================================================================== */
+
+.btn-roll {
+  background-color: #0493BB;
+  color: #FFFFFF;
+  transition: background-color .35s cubic-bezier(.45, 0, .55, 1), box-shadow .35s ease;
+}
+.btn-roll:hover,
+.btn-roll:focus-visible {
+  background-color: #002A5C;
+  color: #FFFFFF;
+}
+.btn-roll:focus-visible {
+  outline: 2px solid #0493BB;
+  outline-offset: 3px;
+}
+.btn-roll.on-dark:hover,
+.btn-roll.on-dark:focus-visible {
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .45), 0 12px 28px -12px rgba(0, 0, 0, .45);
+}
+
+/* Rolling text */
+.btn-roll-mask {
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.5em;
+  line-height: 1.5em;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.btn-roll-mask .btn-text {
+  display: block;
+  line-height: 1.5em;
+  white-space: nowrap;
+}
+.btn-roll .btn-text {
+  transition: transform .35s cubic-bezier(.45, 0, .55, 1);
+}
+.btn-roll:hover .btn-text,
+.btn-roll:focus-visible .btn-text {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-roll .btn-text { transition: none; }
+}

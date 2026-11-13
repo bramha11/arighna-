@@ -1,0 +1,62 @@
+/* =====================================================================
+   ARIGHNA PHARMA — SHARED TYPE SCALE (every page)
+   ---------------------------------------------------------------------
+   Use these classes instead of one-off Tailwind text sizes so every page
+   stays consistent. Colours, margins and widths still come from Tailwind.
+
+   .t-hero     page hero heading (h1)            36 → 52 → 60px
+   .t-section  section heading (h2)              32 → 40 → 48px
+   .t-sub      heading under a section (h3)      22 → 26px
+   .t-card     title in a listing grid           19 → 20px
+   .t-lead     section intro paragraph           16 → 18px
+   .t-body     regular body text                 15 → 16px
+
+   Breakpoints match Tailwind: sm = 640px, lg = 1024px.
+   ===================================================================== */
+
+.t-hero {
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.t-section {
+  font-size: 32px;
+  line-height: 1.16;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.t-sub {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.t-card {
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.t-lead {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.t-body {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (min-width: 640px) {
+  .t-hero    { font-size: 52px; }
+  .t-section { font-size: 40px; }
+  .t-lead    { font-size: 18px; }
+  .t-body    { font-size: 16px; }
+}
+
+@media (min-width: 1024px) {
+  .t-hero    { font-size: 60px; }
+  .t-section { font-size: 48px; }
+  .t-sub     { font-size: 26px; }
+  .t-card    { font-size: 20px; }
+}

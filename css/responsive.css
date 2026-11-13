@@ -1,0 +1,344 @@
+/* =====================================================================
+   ARIGHNA PHARMA — MOBILE / TABLET RESPONSIVE LAYER
+   ---------------------------------------------------------------------
+   Every rule below lives inside a max-width media query, so desktop
+   (>= 1024px) renders exactly as before. Shared by all pages except
+   try.html. Pairs with js/responsive.js (mobile menu + swipe helpers).
+   ===================================================================== */
+
+/* Navbar dropdown links jump to sections (e.g. about.html#core-values):
+   stop a little below the fixed navbar instead of hiding the section top under it */
+section[id] { scroll-margin-top: 72px; }
+
+/* IMAGE SLOTS — every image on the site is an <img src="">. While src is
+   empty it shows as a grey placeholder; paste an image link into src and the
+   photo appears in the same box (all pages, all screen sizes). */
+img[src=""] {
+  content: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+  background: #E2E8F0;
+  color: transparent;   /* hide alt text if a browser shows it */
+}
+
+/* NAVBAR LOGO — the new Arighna logo (assets/Photos/logo-horizontal*.png).
+   Homepage: white version over the hero video, full colour once the bar
+   turns white (js/navbar.js adds .nav-solid). Other pages: full colour. */
+.nav-logo-link { position: relative; display: inline-flex; align-items: center; }
+.nav-logo { display: block; height: 46px; width: auto; transition: opacity .35s ease; }
+.nav-logo-white { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+header.navbar[data-nav="home"] .nav-logo-color { opacity: 0; }
+header.navbar[data-nav="home"].nav-solid .nav-logo-color { opacity: 1; }
+header.navbar[data-nav="home"].nav-solid .nav-logo-white { opacity: 0; }
+@media (max-width: 1023.98px) { .nav-logo { height: 36px; } }
+
+/* Mobile-menu elements are injected by js/responsive.js; hidden on desktop */
+.mnav-toggle-wrap,
+.mnav-panel {
+  display: none;
+}
+
+/* =====================================================================
+   TABLET & MOBILE  (< 1024px)
+   ===================================================================== */
+@media (max-width: 1023.98px) {
+
+  /* ---------- Home: hero is full-bleed on phones / tablets (the inset
+     rounded card with the white border is a desktop-only look) ---------- */
+  .hero-wrapper {
+    width: 100% !important;
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+    min-height: 0 !important;         /* height comes from #hero below */
+  }
+  .hero-frame { display: none !important; }
+  /* the video fills #hero, so #hero must fill the whole screen too
+     (its desktop size is "screen minus the 40px border") */
+  #hero {
+    /* full screen; the video fills it edge to edge */
+    min-height: 100vh !important;
+    min-height: 100svh !important;   /* visible screen height on phones (excludes the address bar) */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* the spare height is shared out evenly: equal space above the heading,
+     between the heading and the text block, and below the buttons */
+  #hero > div.z-20 {
+    align-self: stretch;
+    height: auto !important;
+    justify-content: space-evenly !important;
+    padding-top: 84px !important;     /* the navbar's height: spacing starts below it */
+    padding-bottom: 16px !important;
+    gap: 32px;                        /* never closer than this on short screens */
+  }
+  #hero > div.z-20 > div:last-child {
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* "Purpose of Arighna Pharma" line above the heading: smaller on phones / tablets */
+  #hero .hero-subheading {
+    font-size: 14px !important;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px !important;
+  }
+
+  /* ---------- Navbar: compact height on small screens ---------- */
+  header.navbar {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  /* ---------- Hamburger toggle ---------- */
+  .mnav-toggle-wrap {
+    display: flex;
+    align-items: center;
+  }
+  .mnav-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mnav-toggle svg {
+    width: 26px;
+    height: 26px;
+  }
+  .mnav-toggle .mnav-icon-close { display: none; }
+  .mnav-toggle[aria-expanded="true"] .mnav-icon-open { display: none; }
+  .mnav-toggle[aria-expanded="true"] .mnav-icon-close { display: block; }
+
+  /* ---------- Dropdown panel (same look as the desktop dropdowns) ---------- */
+  .mnav-panel {
+    display: block;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
+    max-height: calc(100vh - 110px);
+    max-height: calc(100dvh - 110px);
+    overflow-y: auto;
+    background: #FFFFFF;
+    border: 1px solid #F1F5F9;
+    border-radius: 24px;
+    padding: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 42, 92, 0.25);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  }
+  .mnav-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mnav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mnav-link {
+    display: block;
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 16px;
+    color: #002A5C;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .mnav-link:hover,
+  .mnav-link:focus-visible,
+  .mnav-link.is-active {
+    background: rgba(4, 147, 187, 0.1);
+    color: #0493BB;
+  }
+  .mnav-link.is-active { font-weight: 600; }
+
+  .mnav-sub-toggle {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: #002A5C;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+  .mnav-sub-toggle svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+  .mnav-sub-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  .mnav-sub {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+  .mnav-sub.is-open { grid-template-rows: 1fr; }
+  .mnav-sub > div {
+    overflow: hidden;
+    padding-left: 12px;
+  }
+  .mnav-sub .mnav-link {
+    font-size: 15px;
+    color: #475569;
+    padding: 10px 16px;
+  }
+  .mnav-sub .mnav-link:hover { color: #0493BB; }
+
+  .mnav-actions {
+    display: none;
+    gap: 10px;
+    padding: 12px 4px 4px;
+    margin-top: 8px;
+    border-top: 1px solid #F1F5F9;
+  }
+  .mnav-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 40px;
+    background: #002A5C;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  .mnav-btn:hover,
+  .mnav-btn.is-active { background: #0493BB; }
+
+  /* ---------- Long words never push the page sideways ---------- */
+  h1, h2, h3 { overflow-wrap: break-word; }
+
+  /* ---------- Home: image track becomes swipeable ---------- */
+  #approach-scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #approach-scroll-container::-webkit-scrollbar { display: none; }
+
+  /* ---------- Home: blog carousel becomes swipeable ---------- */
+  #blogs-section div.w-full.overflow-hidden {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  #blogs-section div.w-full.overflow-hidden::-webkit-scrollbar { display: none; }
+  #blog-track > article { scroll-snap-align: start; }
+}
+
+/* =====================================================================
+   MOBILE  (< 768px)
+   ===================================================================== */
+@media (max-width: 767.98px) {
+
+  /* ---------- Home: CTA floating avatars stay clear of the text ---------- */
+  #cta-float-1, #cta-float-3, #cta-float-5, #cta-float-6 {
+    width: 72px !important;
+    height: 72px !important;
+  }
+  #cta-section > div > div.z-10 {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  /* ---------- About: hero floating avatars stay clear of the text ---------- */
+  #hero-section .animate-float-1,
+  #hero-section .animate-float-2,
+  #hero-section .animate-float-3 {
+    width: 72px !important;
+    height: 72px !important;
+  }
+  #hero-section [class*="top-[42%]"] { display: none !important; }
+  /* the desktop 620px stage height leaves a big empty band on phones */
+  #hero-section > div { min-height: 0 !important; }
+
+  /* Beyond Business: 3D slider section has its own fixed 90px padding */
+  .rt-slider-v1 { padding: 48px 0 !important; }
+  .rt-slider-v1-heading-wrap { margin-bottom: 32px !important; }
+  #hero-section > div > div.z-10 {
+    padding-top: 104px;
+    padding-bottom: 104px;
+  }
+
+  /* ---------- Beyond Business: world map scrolls sideways, labels stay readable ---------- */
+  #geographic-vision .w-full.relative.py-2 {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #geographic-vision .w-full.relative.py-2::-webkit-scrollbar { display: none; }
+  #geographic-vision svg[viewBox="0 0 1200 600"] { min-width: 760px; }
+}
+
+/* =====================================================================
+   PHONE  (< 640px)
+   ===================================================================== */
+@media (max-width: 639.98px) {
+
+  /* ---------- Buttons: one standard size on phones ---------- */
+  .btn-roll {
+    padding: 0 22px !important;
+    min-height: 46px;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px !important;
+  }
+  .btn-roll > div { height: 22px !important; }             /* older mask markup */
+  .btn-roll .btn-text { font-size: 15px !important; line-height: 22px !important; }
+  .btn-roll .btn-roll-mask { height: 22px; line-height: 22px; }
+
+  /* ---------- Hero buttons: side by side when they fit, otherwise stacked;
+     always equal width and centred ---------- */
+  .hero-actions {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: 12px !important;
+    width: 100%;
+    justify-items: stretch;
+  }
+  .hero-actions > * { width: 100% !important; margin: 0 !important; }
+  .hero-actions .btn-roll { padding: 0 12px !important; }
+  .hero-actions > a.btn-roll,
+  .hero-actions > * > a.btn-roll {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100% !important;
+  }
+
+  /* Header pills move into the menu panel on phones */
+  header.navbar #navLoginBtn,
+  header.navbar #navContactBtn {
+    display: none !important;
+  }
+  .mnav-actions { display: flex; }
+}
+
+/* Very narrow phones (iPhone SE 1st gen, small Androids) */
+@media (max-width: 374.98px) {
+  header.navbar > div > a:first-child { font-size: 20px; }
+}

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blogs - Arighna Pharma</title>
+  <link rel="icon" type="image/png" href="assets/Photos/logo-mark.png" />
+  <link rel="apple-touch-icon" href="assets/Photos/logo-mark.png" />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            pharma: {
+              navy: '#002A5C',
+              blue: '#0493BB',
+              white: '#FFFFFF',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+  </style>
+  <!-- Mobile / tablet responsive layer (desktop unaffected) -->
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <script src="js/responsive.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/hero-rotate.js" defer></script>
+</head>
+<body class="bg-white text-[#002A5C] font-sans antialiased selection:bg-[#0493BB] selection:text-white flex flex-col items-center">
+
+  <!-- ==========================================
+        SECTION 1: NAVBAR
+  =========================================== -->
+<!-- Shared navbar markup (same on every page). Behaviour: js/navbar.js. Home = transparent over hero, white on scroll. -->
+<header class="navbar fixed top-0 left-0 w-full z-50 pt-12 pb-8 transition-none bg-white/80 backdrop-blur-md border-b border-slate-100" data-nav="light">
+  <div class="max-w-[1500px] mx-auto px-6 lg:px-12 flex justify-between items-center">
+
+    <!-- Brand Logo -->
+    <a href="index.html" class="nav-element nav-logo-link text-[#002A5C] hover:opacity-90 transition-opacity">
+      <img src="assets/Photos/logo-horizontal.png" alt="Arighna Pharma" class="nav-logo nav-logo-color" width="991" height="170" />
+    </a>
+
+    <!-- Desktop Navigation Menu -->
+    <nav class="hidden lg:flex items-center gap-8 xl:gap-10 text-[16px] font-normal" aria-label="Main">
+      <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
+        <a href="about.html" class="hover:text-[#0493BB] transition-colors">About Us</a>
+        <button class="focus:outline-none flex items-center" aria-label="Toggle About Us menu">
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+        </button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
+          <a href="about.html#about-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Overview</a>
+          <a href="about.html#board-of-directors" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Board Of Directors</a>
+          <a href="team.html" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Leadership Team</a>
+          <a href="about.html#core-values" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Core Values</a>
+          <a href="about.html#investor-relations" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Investor Relations</a>
+        </div>
+      </div>
+      <a href="products.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Products</a>
+      <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
+        <a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors">Beyond Business</a>
+        <button class="focus:outline-none flex items-center" aria-label="Toggle Beyond Business menu">
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+        </button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
+          <a href="beyond-business.html#objective" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Objective</a>
+          <a href="beyond-business.html#therapeutics-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Our Focus Areas</a>
+          <a href="beyond-business.html#vision-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Vision</a>
+          <a href="beyond-business.html#geographic-vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Geographic Vision</a>
+          <a href="beyond-business.html#discovery-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Commitment to Society</a>
+        </div>
+      </div>
+      <a href="careers.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Careers</a>
+      <a href="blogs.html" class="nav-element text-[#0493BB] font-semibold transition-colors" aria-current="page">Blogs</a>
+    </nav>
+
+    <!-- Right Action Buttons -->
+    <div class="flex items-center gap-3">
+      <a id="navLoginBtn" href="#login" class="btn-roll nav-btn font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block">
+        <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]">Log In</span>
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]" aria-hidden="true">Log In</span>
+        </div>
+      </a>
+      <a id="navContactBtn" href="contact.html" class="btn-roll nav-btn font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block">
+        <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]">Contact</span>
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]" aria-hidden="true">Contact</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+
+  <!-- ==========================================
+        SECTION 2: BLOG HERO SECTION
+  =========================================== -->
+  <section class="w-full pt-36 pb-12 md:pb-20 px-6 lg:px-12 bg-white relative overflow-hidden">
+    <div class="max-w-[1500px] mx-auto w-full">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        
+        <!-- LEFT COLUMN: HEADING & DESCRIPTION -->
+        <div class="lg:col-span-6 flex flex-col justify-center">
+          
+          <h1 class="t-hero text-[#002A5C] mb-6">
+            Insights shaping the <br />
+            <span class="text-[#0493BB] font-semibold">future of medicine.</span>
+          </h1>
+
+          <p class="t-lead text-[#475569] max-w-xl mb-8">
+            Stay updated with clinical breakthroughs, therapeutic advancements, industry trends, and strategic perspectives directly from our research leaders.
+          </p>
+
+          <div class="hero-actions flex flex-wrap items-center gap-4">
+            <a href="#blog-catalog" class="btn-roll font-semibold px-8 py-4 rounded-[40px] text-[16px] shadow-md">
+              <span class="btn-roll-mask"><span class="btn-text">Explore Articles</span><span class="btn-text" aria-hidden="true">Explore Articles</span></span>
+            </a>
+            <a href="contact.html" class="btn-roll font-semibold px-8 py-4 rounded-[40px] text-[16px]">
+              <span class="btn-roll-mask"><span class="btn-text">Subscribe Now</span><span class="btn-text" aria-hidden="true">Subscribe Now</span></span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: UNIFORM 2-COLUMN FLEX GRID (GREY PLACEHOLDERS) -->
+        <div class="lg:col-span-6 pt-2 sm:pt-12 lg:pt-16 grid grid-cols-2 gap-6 sm:gap-8 items-start" data-hero-rotate>
+          
+          <!-- Column 1 -->
+          <div class="flex flex-col gap-6 sm:gap-8">
+            <!-- Box 1 (Taller Height) -->
+            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <!-- Box 3 (Standard Height) -->
+            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="flex flex-col gap-6 sm:gap-8">
+            <!-- Box 2 (Standard Height) -->
+            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <!-- Box 4 (Taller Height) -->
+            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+        SECTION 3: BLOG ARTICLES GRID & SEARCH (WHITE BG)
+  =========================================== -->
+  <section id="blog-catalog" class="w-full py-12 md:py-20 px-6 lg:px-12 bg-white border-t border-slate-100">
+    <div class="max-w-[1500px] mx-auto w-full">
+      
+      <!-- Section Header & Controls -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+            <span>Article Library</span>
+          </div>
+          <h2 class="t-sub text-[#002A5C]">Latest Publications</h2>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-[360px]">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </span>
+          <input 
+            type="text" 
+            id="blogSearch" 
+            placeholder="Search topics or keywords..." 
+            class="w-full pl-12 pr-4 py-3.5 rounded-[30px] bg-slate-50/80 border border-slate-200 text-[#002A5C] placeholder-slate-400 focus:outline-none focus:border-[#0493BB] focus:ring-2 focus:ring-[#0493BB]/20 transition-all text-sm shadow-sm"
+            oninput="filterBlogs()"
+          />
+        </div>
+      </div>
+
+      <!-- Filter Categories -->
+      <div id="blogFilters" class="flex flex-wrap items-center gap-2.5 mb-10">
+        <button onclick="setBlogCategory('All')" class="blog-pill px-5 py-2.5 rounded-[20px] text-sm font-semibold transition-all bg-[#002A5C] text-white shadow-sm">
+          All Articles
+        </button>
+        <button onclick="setBlogCategory('Research')" class="blog-pill px-5 py-2.5 rounded-[20px] text-sm font-semibold transition-all bg-white text-[#002A5C] border border-slate-200 hover:border-[#0493BB] hover:text-[#0493BB] shadow-sm">
+          Research & Development
+        </button>
+        <button onclick="setBlogCategory('Neuroscience')" class="blog-pill px-5 py-2.5 rounded-[20px] text-sm font-semibold transition-all bg-white text-[#002A5C] border border-slate-200 hover:border-[#0493BB] hover:text-[#0493BB] shadow-sm">
+          Neuroscience
+        </button>
+        <button onclick="setBlogCategory('Sustainability')" class="blog-pill px-5 py-2.5 rounded-[20px] text-sm font-semibold transition-all bg-white text-[#002A5C] border border-slate-200 hover:border-[#0493BB] hover:text-[#0493BB] shadow-sm">
+          Sustainability & ESG
+        </button>
+      </div>
+
+      <!-- Articles Grid -->
+      <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Cards dynamically injected -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blog articles (shared with the homepage carousel) -->
+  <script src="js/blog-data.js"></script>
+
+  <!-- Lucide Icons & Filter Script -->
+  <script>
+    const articles = window.ARIGHNA_BLOGS || []; // shared with index.html (js/blog-data.js)
+
+    let currentCategory = 'All';
+
+    function setBlogCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.blog-pill').forEach(btn => {
+        if (btn.innerText.includes(cat) || (cat === 'All' && btn.innerText === 'All Articles')) {
+          btn.className = "blog-pill px-5 py-2.5 rounded-[20px] text-sm font-semibold transition-all bg-[#002A5C] text-white shadow-sm";
+        } else {
+          btn.className = "blog-pill px-5 py-2.5 rounded-[20px] text-sm font-semibold transition-all bg-white text-[#002A5C] border border-slate-200 hover:border-[#0493BB] hover:text-[#0493BB] shadow-sm";
+        }
+      });
+      filterBlogs();
+    }
+
+    function filterBlogs() {
+      const query = document.getElementById('blogSearch').value.toLowerCase();
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = '';
+
+      const filtered = articles.filter(a => {
+        const matchesCat = currentCategory === 'All' || a.category === currentCategory;
+        const matchesQuery = a.title.toLowerCase().includes(query) || a.excerpt.toLowerCase().includes(query);
+        return matchesCat && matchesQuery;
+      });
+
+      filtered.forEach(article => {
+        grid.insertAdjacentHTML('beforeend', window.renderBlogCard(article, 'div'));
+
+      });
+
+      lucide.createIcons();
+    }
+
+    document.addEventListener('DOMContentLoaded', filterBlogs);
+    lucide.createIcons();
+  </script>
+
+  <!-- =================================================================
+      MAIN FOOTER CANVAS WRAPPER (MATCHING HERO MARGIN & RADIUS)
+ ================================================================== -->
+<div class="footer-wrapper relative w-[calc(100%-40px)] mx-auto my-[20px] rounded-[40px] overflow-hidden bg-[#002A5C] transition-all ease-out shadow-2xl font-['Plus_Jakarta_Sans',sans-serif]">
+
+  <!-- ==========================================
+        SECTION: FOOTER
+   =========================================== -->
+  <footer class="w-full text-white pt-16 pb-8 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
+    
+    <!-- SUBTLE BACKGROUND GLOW EFFECTS -->
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-[#0493BB]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-[#0493BB]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- TOP / MAIN FOOTER CONTENT GRID -->
+    <div class="max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-12 border-b border-white/10 relative z-10">
+      
+      <!-- LEFT COLUMN: Logo, Address, Contact Info & Socials (5 Cols) -->
+      <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+        <div>
+          <!-- Company Logo -->
+          <a href="index.html" class="inline-block mb-6 hover:opacity-90 transition-opacity" aria-label="Arighna Pharma home">
+            <img src="assets/Photos/logo-horizontal-white.png" alt="Arighna Pharma" class="h-11 sm:h-12 w-auto" width="991" height="170" />
+          </a>
+
+          <!-- Description / Tagline -->
+          <p class="text-white/70 text-base leading-relaxed max-w-sm mb-8 font-normal">
+            Redefining pharmaceutical marketing with a vision for strategic expansion, ethical practices, and sustainable healthcare growth.
+          </p>
+
+          <!-- Address & Contact Info -->
+          <div class="space-y-4 text-white/80 text-sm">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-[#0493BB] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <span>PL-5-B, 11/1, Sector 1, New Panvel (West), Mumbai, Maharashtra - 410206</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-[#0493BB] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <a href="mailto:info@arighnapharma.com" class="hover:text-[#0493BB] transition-colors duration-200">info@arighnapharma.com</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-[#0493BB] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              <a href="tel:+919830334724" class="hover:text-[#0493BB] transition-colors duration-200">9830334724</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex items-center gap-3 pt-2">
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <!-- X (Twitter) -->
+          <a href="#" aria-label="X" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Equal Grid Navigation (7 Cols) -->
+      <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 pt-4 lg:pt-0">
+        
+        <!-- Column 1: Our Story -->
+        <div>
+          <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Our Story</h3>
+          <ul class="space-y-3 text-sm text-white/70">
+            <li><a href="about.html#about-section" class="hover:text-[#0493BB] transition-colors duration-200">Overview</a></li>
+            <li><a href="about.html#board-of-directors" class="hover:text-[#0493BB] transition-colors duration-200">Board Of Directors</a></li>
+            <li><a href="team.html" class="hover:text-[#0493BB] transition-colors duration-200">Leadership Team</a></li>
+            <li><a href="about.html#core-values" class="hover:text-[#0493BB] transition-colors duration-200">Core Values</a></li>
+            <li><a href="products.html" class="hover:text-[#0493BB] transition-colors duration-200">Products</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Beyond Business -->
+        <div>
+          <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Beyond Business</h3>
+          <ul class="space-y-3 text-sm text-white/70">
+            <li><a href="beyond-business.html#objective" class="hover:text-[#0493BB] transition-colors duration-200">Objective</a></li>
+            <li><a href="beyond-business.html#therapeutics-section" class="hover:text-[#0493BB] transition-colors duration-200">Our Focus Areas</a></li>
+            <li><a href="beyond-business.html#vision-section" class="hover:text-[#0493BB] transition-colors duration-200">Vision</a></li>
+            <li><a href="beyond-business.html#geographic-vision" class="hover:text-[#0493BB] transition-colors duration-200">Geographic Vision</a></li>
+            <li><a href="beyond-business.html#discovery-section" class="hover:text-[#0493BB] transition-colors duration-200">Commitment to Society</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Quick Links -->
+        <div class="col-span-2 sm:col-span-1">
+          <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Quick Links</h3>
+          <ul class="space-y-3 text-sm text-white/70">
+            <li><a href="index.html" class="hover:text-[#0493BB] transition-colors duration-200">Home</a></li>
+            <li><a href="about.html" class="hover:text-[#0493BB] transition-colors duration-200">About Us</a></li>
+            <li><a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors duration-200">Beyond Business</a></li>
+            <li><a href="about.html#investor-relations" class="hover:text-[#0493BB] transition-colors duration-200">Investor Relations</a></li>
+            <li><a href="careers.html" class="hover:text-[#0493BB] transition-colors duration-200">Careers</a></li>
+            <li><a href="blogs.html" class="hover:text-[#0493BB] transition-colors duration-200">Blogs</a></li>
+            <li><a href="contact.html" class="hover:text-[#0493BB] transition-colors duration-200">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM FOOTER BAR -->
+    <div class="max-w-[1500px] mx-auto pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/60 relative z-10">
+      
+      <!-- LEFT: Copyright -->
+      <div class="text-center md:text-left">
+        <p>&copy; 2026 Arighna Pharma. All rights reserved.</p>
+      </div>
+
+      <!-- CENTER: Designed By -->
+      <div class="text-center text-white/70">
+        <span>Designed & Developed with excellence</span>
+      </div>
+
+      <!-- RIGHT SIDE: Privacy Policy & Terms -->
+      <div class="flex items-center gap-6">
+        <a href="#privacy-policy" class="hover:text-[#0493BB] transition-colors duration-200">Privacy Policy</a>
+        <span class="w-1 h-1 rounded-full bg-white/30"></span>
+        <a href="#terms-and-conditions" class="hover:text-[#0493BB] transition-colors duration-200">Terms & Conditions</a>
+      </div>
+
+    </div>
+
+  </footer>
+</div>
+<!-- END FOOTER WRAPPER -->
+
+</body>
+</html>

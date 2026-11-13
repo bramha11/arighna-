@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arighna Pharma</title>
+  <link rel="icon" type="image/png" href="assets/Photos/logo-mark.png" />
+  <link rel="apple-touch-icon" href="assets/Photos/logo-mark.png" />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,13 +33,11 @@
   </script>
   
   <!-- Preload local 3D file for faster fetch -->
-  <link rel="preload" href="./assets/3d/scene.splinecode" as="fetch" crossorigin="anonymous">
 
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
   <!-- Spline Viewer CDN -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <!-- GSAP & ScrollTrigger CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -72,42 +72,45 @@
       background-color: transparent !important;
     }
   </style>
+  <!-- Mobile / tablet responsive layer (desktop unaffected) -->
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <script src="js/responsive.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/animations.js" defer></script>
 </head>
 <body class="bg-white text-pharma-navy font-sans antialiased selection:bg-pharma-blue selection:text-white flex flex-col items-center">
 
   <!-- ==========================================
         SECTION 1: NAVBAR
   =========================================== -->
- <header class="navbar fixed top-0 left-0 w-full z-50 pt-12 pb-8 transition-none bg-white/80 backdrop-blur-md border-b border-slate-100">
+<!-- Shared navbar markup (same on every page). Behaviour: js/navbar.js. Home = transparent over hero, white on scroll. -->
+<header class="navbar fixed top-0 left-0 w-full z-50 pt-12 pb-8 transition-none bg-white/80 backdrop-blur-md border-b border-slate-100" data-nav="light">
   <div class="max-w-[1500px] mx-auto px-6 lg:px-12 flex justify-between items-center">
 
     <!-- Brand Logo -->
-    <a href="index.html" class="nav-element text-2xl font-extrabold tracking-tight text-[#002A5C] hover:opacity-90 transition-opacity">
-      ARIGHNA PHARMA
+    <a href="index.html" class="nav-element nav-logo-link text-[#002A5C] hover:opacity-90 transition-opacity">
+      <img src="assets/Photos/logo-horizontal.png" alt="Arighna Pharma" class="nav-logo nav-logo-color" width="991" height="170" />
     </a>
 
     <!-- Desktop Navigation Menu -->
-    <nav class="hidden lg:flex items-center gap-8 xl:gap-10 text-[16px] font-normal">
-
-      <!-- 1. About Us Hyperlink + Dropdown -->
+    <nav class="hidden lg:flex items-center gap-8 xl:gap-10 text-[16px] font-normal" aria-label="Main">
       <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
-        <a href="about.html" class="hover:text-[#0493BB] transition-colors">About Us</a>
+        <a href="about.html" class="text-[#0493BB] font-semibold transition-colors" aria-current="page">About Us</a>
         <button class="focus:outline-none flex items-center" aria-label="Toggle About Us menu">
           <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
         </button>
 
         <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
-          <a href="#overview" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Overview</a>
-          <a href="#board-of-directors" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Board Of Director</a>
-          <a href="#core-values" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Core Values</a>
-          <a href="#investor-relations" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Investor Relations</a>
+          <a href="about.html#about-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Overview</a>
+          <a href="about.html#board-of-directors" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Board Of Directors</a>
+          <a href="team.html" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Leadership Team</a>
+          <a href="about.html#core-values" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Core Values</a>
+          <a href="about.html#investor-relations" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Investor Relations</a>
         </div>
       </div>
-
-      <!-- 2. Products (No Dropdown) -->
-      <a href="#products" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Products</a>
-
-      <!-- 3. Beyond Business Hyperlink + Dropdown -->
+      <a href="products.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Products</a>
       <div class="nav-element relative group py-2 text-[#002A5C] flex items-center gap-1.5 font-medium">
         <a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors">Beyond Business</a>
         <button class="focus:outline-none flex items-center" aria-label="Toggle Beyond Business menu">
@@ -115,37 +118,29 @@
         </button>
 
         <div class="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-[24px] p-3 shadow-2xl opacity-0 translate-y-3 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 border border-slate-100">
-          <a href="#division" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Division</a>
-          <a href="#vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Vision</a>
-          <a href="#objective" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Objective</a>
-          <a href="#geographic-vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Geographic Vision</a>
-          <a href="#commitment-to-society" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Commitment to Society</a>
+          <a href="beyond-business.html#objective" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Objective</a>
+          <a href="beyond-business.html#therapeutics-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Our Focus Areas</a>
+          <a href="beyond-business.html#vision-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Vision</a>
+          <a href="beyond-business.html#geographic-vision" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Geographic Vision</a>
+          <a href="beyond-business.html#discovery-section" class="block px-4 py-2.5 rounded-[16px] text-[#002A5C] hover:bg-[#0493BB]/10 hover:text-[#0493BB] text-[16px] font-medium transition-colors">Commitment to Society</a>
         </div>
       </div>
-
-      <!-- 4. Careers -->
       <a href="careers.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Careers</a>
-
-      <!-- 5. Blogs -->
-      <a href="#blogs" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Blogs</a>
-
+      <a href="blogs.html" class="nav-element text-[#002A5C] hover:text-[#0493BB] transition-colors font-medium">Blogs</a>
     </nav>
 
     <!-- Right Action Buttons -->
     <div class="flex items-center gap-3">
-      <!-- Log In Button -->
-      <a id="navLoginBtn" href="#login" class="nav-btn bg-[#002A5C] text-white font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block hover:bg-[#0493BB] transition-colors">
+      <a id="navLoginBtn" href="#login" class="btn-roll nav-btn font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block">
         <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
           <span class="btn-text block text-[16px] font-semibold leading-[24px]">Log In</span>
-          <span class="btn-text block text-[16px] font-semibold leading-[24px]">Log In</span>
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]" aria-hidden="true">Log In</span>
         </div>
       </a>
-
-      <!-- Contact Button -->
-      <a id="navContactBtn" href="contact.html" class="nav-btn bg-[#002A5C] text-white font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block hover:bg-[#0493BB] transition-colors">
+      <a id="navContactBtn" href="contact.html" class="btn-roll nav-btn font-semibold px-8 py-3.5 rounded-[40px] text-[16px] shadow-md relative overflow-hidden group block">
         <div class="relative h-[24px] overflow-hidden flex flex-col justify-start">
           <span class="btn-text block text-[16px] font-semibold leading-[24px]">Contact</span>
-          <span class="btn-text block text-[16px] font-semibold leading-[24px]">Contact</span>
+          <span class="btn-text block text-[16px] font-semibold leading-[24px]" aria-hidden="true">Contact</span>
         </div>
       </a>
     </div>
@@ -156,7 +151,7 @@
   <!-- ==========================================
         SECTION 2: REDESIGNED HERO SECTION (SIDE-ONLY FLOATING AVATARS)
   =========================================== -->
-  <section id="hero-section" class="w-full pt-44 pb-32 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] min-h-screen flex items-center justify-center">
+  <section id="hero-section" class="w-full pt-28 pb-4 md:pt-44 md:pb-32 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif] md:min-h-screen flex items-center justify-center">
     <div class="max-w-[1500px] w-full mx-auto min-h-[620px] flex items-center justify-center relative">
 
       <!-- FLOATING CIRCULAR AVATARS (KEPT STRICTLY ON LEFT AND RIGHT FLANKS, TEXT ZONE COMPLETELY CLEAR) -->
@@ -164,64 +159,64 @@
       <!-- LEFT SIDE AVATARS -->
       <!-- Top Left Outer -->
       <div class="absolute left-0 top-0 lg:left-4 lg:top-2 w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-1">
-        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=400&q=80" alt="Doctor providing care" class="w-full h-full object-cover" />
+        <img src="" alt="Doctor providing care" class="w-full h-full object-cover" />
       </div>
 
       <!-- Top Left Inner -->
       <div class="hidden xl:block absolute left-[12%] top-[14%] w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-3">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80" alt="Medical professional" class="w-full h-full object-cover" />
+        <img src="" alt="Medical professional" class="w-full h-full object-cover" />
       </div>
 
       <!-- Mid-Left Outer -->
       <div class="absolute left-1 top-[42%] w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white shadow-xl bg-slate-200 overflow-hidden animate-float-2">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Patient profile" class="w-full h-full object-cover" />
+        <img src="" alt="Patient profile" class="w-full h-full object-cover" />
       </div>
 
       <!-- Mid-Left Extra Mini -->
       <div class="hidden 2xl:block absolute left-[22%] top-[48%] w-16 h-16 rounded-full border-4 border-white shadow-lg bg-slate-200 overflow-hidden animate-float-1">
-        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=400&q=80" alt="Doctor" class="w-full h-full object-cover" />
+        <img src="" alt="Doctor" class="w-full h-full object-cover" />
       </div>
 
       <!-- Bottom Left Outer -->
       <div class="absolute left-4 bottom-2 lg:left-10 lg:bottom-4 w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-3">
-        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=400&q=80" alt="Smiling patient" class="w-full h-full object-cover" />
+        <img src="" alt="Smiling patient" class="w-full h-full object-cover" />
       </div>
 
       <!-- Bottom Left Inner -->
       <div class="hidden xl:block absolute left-[15%] bottom-[12%] w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-1">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Care consultation" class="w-full h-full object-cover" />
+        <img src="" alt="Care consultation" class="w-full h-full object-cover" />
       </div>
 
 
       <!-- RIGHT SIDE AVATARS -->
       <!-- Top Right Outer -->
       <div class="absolute right-0 top-0 lg:right-4 lg:top-2 w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-2">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Care consultation" class="w-full h-full object-cover" />
+        <img src="" alt="Care consultation" class="w-full h-full object-cover" />
       </div>
 
       <!-- Top Right Inner -->
       <div class="hidden xl:block absolute right-[12%] top-[14%] w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-1">
-        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=400&q=80" alt="Medical professional" class="w-full h-full object-cover" />
+        <img src="" alt="Medical professional" class="w-full h-full object-cover" />
       </div>
 
       <!-- Mid-Right Outer -->
       <div class="absolute right-1 top-[42%] w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-3">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80" alt="Medical professional" class="w-full h-full object-cover" />
+        <img src="" alt="Medical professional" class="w-full h-full object-cover" />
       </div>
 
       <!-- Mid-Right Extra Mini -->
       <div class="hidden 2xl:block absolute right-[22%] top-[48%] w-16 h-16 rounded-full border-4 border-white shadow-lg bg-slate-200 overflow-hidden animate-float-2">
-        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&q=80" alt="Healthcare consultation" class="w-full h-full object-cover" />
+        <img src="" alt="Healthcare consultation" class="w-full h-full object-cover" />
       </div>
 
       <!-- Bottom Right Outer -->
       <div class="absolute right-4 bottom-2 lg:right-10 lg:bottom-4 w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-1">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Patient care" class="w-full h-full object-cover" />
+        <img src="" alt="Patient care" class="w-full h-full object-cover" />
       </div>
 
       <!-- Bottom Right Inner -->
       <div class="hidden xl:block absolute right-[15%] bottom-[12%] w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-200 animate-float-2">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Patient profile" class="w-full h-full object-cover" />
+        <img src="" alt="Patient profile" class="w-full h-full object-cover" />
       </div>
 
 
@@ -229,31 +224,31 @@
       <div class="z-10 text-center max-w-xl sm:max-w-2xl lg:max-w-3xl mx-auto py-12 px-4 flex flex-col items-center">
         
         <!-- Main Heading -->
-        <h1 class="text-[38px] sm:text-[46px] lg:text-[56px] font-medium tracking-tight leading-[1.15] text-[#002A5C] mb-6">
+        <h1 class="t-hero text-[#002A5C] mb-6">
           Pioneering <span class="text-[#0493BB] font-semibold">CNS therapeutics</span> and <span class="text-[#0493BB] font-semibold">complete</span> pharmaceutical care.
         </h1>
 
         <!-- Short Description Text -->
-        <p class="text-base sm:text-lg font-normal text-[#475569] leading-relaxed mb-10 max-w-xl mx-auto">
+        <p class="t-lead font-normal text-[#475569] mb-10 max-w-xl mx-auto">
           At Arighna Pharma, we specialize in neurotherapeutics while delivering an extensive general medicine portfolio to advance healthcare globally.
         </p>
 
         <!-- TWO UNIFIED BUTTONS CONTAINER -->
-        <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+        <div class="hero-actions flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
           
           <!-- Button 1: Explore Portfolio -->
-          <a href="#products" class="nav-btn bg-[#002A5C] text-white font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block hover:bg-[#0493BB] transition-colors duration-300 w-[220px] text-center">
+          <a href="products.html#product-catalog" class="btn-roll nav-btn font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block w-[220px] text-center">
             <div class="relative h-[26px] overflow-hidden flex flex-col justify-start">
-              <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Explore Portfolio</span>
-              <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Explore Portfolio</span>
+              <span class="btn-text block text-[18px] font-semibold leading-[26px]">Explore Portfolio</span>
+              <span class="btn-text block text-[18px] font-semibold leading-[26px]" aria-hidden="true">Explore Portfolio</span>
             </div>
           </a>
 
           <!-- Button 2: Contact Us -->
-          <a id="ctaContactBtn" href="#contact" class="nav-btn bg-[#0493BB] text-white font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block hover:bg-[#002A5C] transition-colors duration-300 w-[220px] text-center">
+          <a id="ctaContactBtn" href="contact.html#contact-form" class="btn-roll nav-btn font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block w-[220px] text-center">
             <div class="relative h-[26px] overflow-hidden flex flex-col justify-start">
-              <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Contact Us</span>
-              <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Contact Us</span>
+              <span class="btn-text block text-[18px] font-semibold leading-[26px]">Contact Us</span>
+              <span class="btn-text block text-[18px] font-semibold leading-[26px]" aria-hidden="true">Contact Us</span>
             </div>
           </a>
 
@@ -266,141 +261,145 @@
 
 
   <!-- ==========================================
-      ABOUT US SECTION
+      ABOUT US: OVERVIEW
+      Part 1: centred intro + wide image
+      Part 2: scroll-revealed statement + stats panel (script at the end of this section)
 =========================================== -->
-<section id="about-section" class="w-full py-24 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+<section id="about-section" class="w-full py-12 md:py-24 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
   <div class="max-w-[1500px] mx-auto">
-    
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
-      
-      <!-- LEFT FEATURE PLACEHOLDER COLUMN -->
-      <div class="lg:col-span-5 flex">
-        <div class="w-full h-full min-h-[420px] rounded-3xl overflow-hidden relative shadow-lg group border border-slate-200/80">
-          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Advanced pharmaceutical research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#002A5C]/60 via-transparent to-transparent flex items-end p-8">
-            <p class="text-white text-lg font-medium leading-snug">
-              Engineering precision formulations across CNS & general medicine.
-            </p>
-          </div>
-        </div>
+
+    <!-- PART 1: INTRO -->
+    <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-5">
+        <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+        <span>Overview</span>
       </div>
+      <h2 class="t-section text-[#002A5C] mb-5">
+        A new beginning, <span class="text-[#0493BB] font-semibold">a stronger commitment.</span>
+      </h2>
+      <p class="t-lead text-[#475569] max-w-2xl">
+        Arighna Pharma Private Limited is a quality-driven pharmaceutical company committed to improving healthcare through innovative, affordable, and reliable medicines, with a strong focus on Neuro-Psychiatry and General Medicine.
+      </p>
+    </div>
 
-      <!-- RIGHT CONTENT & SECONDARY MEDIA COLUMN -->
-      <div class="lg:col-span-7 flex flex-col justify-between">
-        
-        <!-- TOP CONTENT AREA -->
-        <div>
-          <!-- Pill Tag -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4">
-            <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
-            <span>Overview</span>
-          </div>
+    <!-- image placeholder: grows to full width as it scrolls into view (script below) -->
+    <div id="ovMedia" data-anim="none" class="mt-10 md:mt-14 w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] rounded-[16px] overflow-hidden bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
 
-          <!-- Main Heading -->
-          <h2 class="text-[38px] sm:text-[44px] lg:text-[48px] font-medium tracking-tight leading-[1.18] text-[#002A5C] mb-8">
-            Redefining pharmaceutical marketing with a vision for <span class="text-[#0493BB] font-semibold">sustainable growth</span> & lasting impact.
-          </h2>
-
-          <!-- CTA BUTTON (Using rolling text hover mechanism) -->
-          <a id="aboutExploreBtn" href="#overview" class="nav-btn bg-[#0493BB] text-white font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block hover:bg-[#002A5C] transition-colors duration-300 mb-12">
-            <div class="relative h-[26px] overflow-hidden flex flex-col justify-start">
-              <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Explore more</span>
-              <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Explore more</span>
-            </div>
-          </a>
-        </div>
-
-        <!-- BOTTOM TWO-COLUMN LAYOUT: LIST + MINI CARD PLACEHOLDER -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pt-4">
-          
-          <!-- NUMBERED FEATURE LIST -->
-          <div class="md:col-span-7 space-y-0 border-t border-slate-200">
-            
-            <!-- Item 1 -->
-            <a href="#overview" class="group flex items-center justify-between py-3.5 border-b border-slate-200 text-[#002A5C] hover:text-[#0493BB] transition-colors duration-200">
-              <div class="flex items-center gap-3">
-                <span class="text-xs font-semibold text-slate-400 group-hover:text-[#0493BB]">01</span>
-                <span class="text-base font-medium">Strategic market expansion</span>
-              </div>
-              <svg class="w-4 h-4 stroke-current transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-              </svg>
-            </a>
-
-            <!-- Item 2 -->
-            <a href="#overview" class="group flex items-center justify-between py-3.5 border-b border-slate-200 text-[#002A5C] hover:text-[#0493BB] transition-colors duration-200">
-              <div class="flex items-center gap-3">
-                <span class="text-xs font-semibold text-slate-400 group-hover:text-[#0493BB]">02</span>
-                <span class="text-base font-medium">Accessible healthcare solutions</span>
-              </div>
-              <svg class="w-4 h-4 stroke-current transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-              </svg>
-            </a>
-
-            <!-- Item 3 -->
-            <a href="#overview" class="group flex items-center justify-between py-3.5 border-b border-slate-200 text-[#002A5C] hover:text-[#0493BB] transition-colors duration-200">
-              <div class="flex items-center gap-3">
-                <span class="text-xs font-semibold text-slate-400 group-hover:text-[#0493BB]">03</span>
-                <span class="text-base font-medium">Customer-driven intelligence</span>
-              </div>
-              <svg class="w-4 h-4 stroke-current transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-              </svg>
-            </a>
-
-            <!-- Item 4 -->
-            <a href="#overview" class="group flex items-center justify-between py-3.5 border-b border-slate-200 text-[#002A5C] hover:text-[#0493BB] transition-colors duration-200">
-              <div class="flex items-center gap-3">
-                <span class="text-xs font-semibold text-slate-400 group-hover:text-[#0493BB]">04</span>
-                <span class="text-base font-medium">Ethical & sustainable growth</span>
-              </div>
-              <svg class="w-4 h-4 stroke-current transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-              </svg>
-            </a>
-
-          </div>
-
-          <!-- MINI CARD & SUBTEXT -->
-          <div class="md:col-span-5 flex flex-col gap-3">
-            <div class="w-full aspect-[16/10] rounded-xl overflow-hidden border border-slate-200 shadow-sm relative group">
-              <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" alt="Global care" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            </div>
-            <p class="text-xs text-[#475569] leading-normal font-normal">
-              Bridging the gap between pharmaceutical advancements and global patient care.
-            </p>
-          </div>
-
-        </div>
-
+    <!-- PART 2: APPROACH STATEMENT -->
+    <div class="mt-20 md:mt-32 max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-6">
+        <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
+        <span>Our Approach</span>
       </div>
+      <!-- words fill from light to navy as the statement scrolls through the screen -->
+      <h3 id="ovStatement" class="t-section text-[#002A5C]">
+        Our patient-focused approach unites strategic market expansion, accessible healthcare and ethical growth to deliver dependable care in every market we serve.
+      </h3>
+    </div>
 
+    <!-- STATS PANEL -->
+    <div class="mt-12 md:mt-16 bg-[#F8FAFC] border border-slate-100 rounded-[32px] p-8 sm:p-10 lg:p-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div class="ov-stat flex flex-col">
+        <span class="text-[44px] sm:text-[52px] font-medium tracking-tight leading-none text-[#002A5C]"><span class="ov-num" data-to="42">42</span>+</span>
+        <span class="mt-3 text-[15px] font-semibold text-[#0493BB]">Brands</span>
+        <p class="t-body text-[#475569] mt-6 lg:mt-12 max-w-[280px]">A growing portfolio designed to address diverse healthcare needs.</p>
+      </div>
+      <div class="ov-stat flex flex-col">
+        <span class="text-[44px] sm:text-[52px] font-medium tracking-tight leading-none text-[#002A5C]"><span class="ov-num" data-to="84">84</span>+</span>
+        <span class="mt-3 text-[15px] font-semibold text-[#0493BB]">SKUs</span>
+        <p class="t-body text-[#475569] mt-6 lg:mt-12 max-w-[280px]">Developed with a commitment to quality, safety, efficacy and affordability.</p>
+      </div>
+      <div class="ov-stat flex flex-col">
+        <span class="text-[44px] sm:text-[52px] font-medium tracking-tight leading-none text-[#002A5C]"><span class="ov-num" data-to="2">2</span></span>
+        <span class="mt-3 text-[15px] font-semibold text-[#0493BB]">Divisions</span>
+        <p class="t-body text-[#475569] mt-6 lg:mt-12 max-w-[280px]">Neuro-Psychiatry, our flagship focus, and General Medicine.</p>
+      </div>
+      <div class="ov-stat flex flex-col">
+        <span class="text-[44px] sm:text-[52px] font-medium tracking-tight leading-none text-[#002A5C]"><span class="ov-num" data-to="13">13</span></span>
+        <span class="mt-3 text-[15px] font-semibold text-[#0493BB]">Therapeutic categories</span>
+        <p class="t-body text-[#475569] mt-6 lg:mt-12 max-w-[280px]">From anti-depressants and anti-epileptics to everyday general medicine.</p>
+      </div>
     </div>
 
   </div>
 </section>
 
+<script>
+  // Overview: word-by-word colour fill, growing image placeholder, count-up stats
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    // 1. statement: split into words, scrub from light slate to navy
+    var st = document.getElementById("ovStatement");
+    if (st) {
+      var words = st.textContent.trim().split(/\s+/);
+      st.innerHTML = words.map(function (w) { return '<span class="ov-word">' + w + '</span>'; }).join(" ");
+      var spans = st.querySelectorAll(".ov-word");
+      gsap.fromTo(spans, { color: "#CBD5E1" }, {
+        color: "#002A5C", ease: "none", stagger: 0.1,
+        scrollTrigger: { trigger: st, start: "top 85%", end: "bottom 45%", scrub: 0.6 }
+      });
+    }
+
+    // 2. image placeholder grows from a smaller inset box to full width while
+    //    it scrolls up into view (scrubbed, so it follows the scroll)
+    var media = document.getElementById("ovMedia");
+    if (media) {
+      gsap.fromTo(media, { scale: 0.82, opacity: 0.6 }, {
+        scale: 1, opacity: 1, ease: "none", transformOrigin: "50% 100%",
+        scrollTrigger: { trigger: media, start: "top bottom", end: "top 25%", scrub: 0.6 }
+      });
+    }
+
+    // 3. stats count up from 0 once the panel is well inside the screen,
+    //    and count again every time you scroll back down to it
+    var panel = document.querySelector("#about-section .ov-stat");
+    var nums = document.querySelectorAll("#about-section .ov-num");
+    var counters = [];
+    nums.forEach(function (el, i) {
+      var to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || "0", 10), o = { v: 0 };
+      el.textContent = (0).toFixed(dec);
+      counters.push(gsap.to(o, {
+        v: to, duration: 2.2, ease: "power3.out", delay: 0.25 + i * 0.12, paused: true,
+        onUpdate: function () { el.textContent = o.v.toFixed(dec); }
+      }));
+    });
+    if (panel && counters.length) {
+      ScrollTrigger.create({
+        trigger: panel.parentElement, start: "top 75%",
+        onEnter: function () { counters.forEach(function (t) { t.restart(true); }); },
+        onLeaveBack: function () { // reset to 0 above the panel so it counts again next time
+          counters.forEach(function (t) { t.pause(0); });
+          nums.forEach(function (el) { el.textContent = (0).toFixed(parseInt(el.dataset.dec || "0", 10)); });
+        }
+      });
+    }
+  });
+</script>
+
 
 <!-- ==========================================
       CORE VALUES SECTION (6-CARD BALANCED GRID)
 =========================================== -->
-<section id="core-values" class="w-full py-24 px-6 lg:px-12 bg-slate-50/80 text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+<section id="core-values" class="w-full py-12 md:py-24 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
   <div class="max-w-[1500px] mx-auto">
     
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-6">
       <div class="max-w-2xl">
         <!-- Pill Tag -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-[#0493BB] text-[14px] font-medium mb-4 shadow-sm border border-slate-200/60">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4">
           <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
           <span>Core Values</span>
         </div>
-        <h2 class="text-[36px] sm:text-[42px] lg:text-[48px] font-medium tracking-tight leading-[1.15] text-[#002A5C]">
+        <h2 class="t-section text-[#002A5C]">
           Guiding principles behind our <span class="text-[#0493BB] font-semibold">pharmaceutical excellence</span>.
         </h2>
       </div>
-      <p class="text-[#475569] text-base sm:text-lg font-normal max-w-md leading-relaxed">
+      <p class="t-lead text-[#475569] font-normal max-w-md">
         Our core pillars shape every decision—from high-purity formulation and supply chain integrity to global patient access.
       </p>
     </div>
@@ -414,12 +413,11 @@
           <div class="w-14 h-14 rounded-2xl bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
             <i data-lucide="shield-check" class="w-7 h-7"></i>
           </div>
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Pillar 01</span>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
+          <h3 class="t-sub text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
             Quality Without Compromise
           </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Committed to delivering high-purity medicines that consistently meet the highest global standards of safety, efficacy, and regulatory compliance.
+          <p class="t-body text-[#475569]">
+            We are committed to delivering medicines that meet the highest standards of safety, efficacy, consistency, and regulatory compliance.
           </p>
         </div>
       </div>
@@ -428,14 +426,13 @@
       <div class="bg-white p-8 lg:p-10 rounded-[32px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/40 transition-all duration-300 flex flex-col justify-between group">
         <div>
           <div class="w-14 h-14 rounded-2xl bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="scale" class="w-7 h-7"></i>
+            <i data-lucide="heart-pulse" class="w-7 h-7"></i>
           </div>
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Pillar 02</span>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Integrity & Ethics
+          <h3 class="t-sub text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
+            Patient-Centric Care
           </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Conducting every facet of our business with honesty, transparency, and deep ethical responsibility toward healthcare professionals and society.
+          <p class="t-body text-[#475569]">
+            Every decision begins with the patient. We strive to improve treatment outcomes through reliable, affordable, and accessible healthcare solutions.
           </p>
         </div>
       </div>
@@ -444,14 +441,13 @@
       <div class="bg-white p-8 lg:p-10 rounded-[32px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/40 transition-all duration-300 flex flex-col justify-between group">
         <div>
           <div class="w-14 h-14 rounded-2xl bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="heart-pulse" class="w-7 h-7"></i>
+            <i data-lucide="scale" class="w-7 h-7"></i>
           </div>
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Pillar 03</span>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Patient-Centric Care
+          <h3 class="t-sub text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
+            Integrity &amp; Ethics
           </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Placing patient outcomes at the core of our decisions to improve treatment quality, restore health, and enhance overall quality of life.
+          <p class="t-body text-[#475569]">
+            We conduct our business with honesty, transparency, and ethical responsibility toward patients, healthcare professionals, partners, and society.
           </p>
         </div>
       </div>
@@ -462,12 +458,11 @@
           <div class="w-14 h-14 rounded-2xl bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
             <i data-lucide="flask-conical" class="w-7 h-7"></i>
           </div>
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Pillar 04</span>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Scientific Innovation
+          <h3 class="t-sub text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
+            Scientific Excellence
           </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Advancing evidence-based therapeutics across neuro-psychiatry and general health through clinical rigor and scientific discovery.
+          <p class="t-body text-[#475569]">
+            We believe in evidence-based medicine, continuous learning, and the responsible promotion of scientific knowledge.
           </p>
         </div>
       </div>
@@ -476,14 +471,13 @@
       <div class="bg-white p-8 lg:p-10 rounded-[32px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/40 transition-all duration-300 flex flex-col justify-between group">
         <div>
           <div class="w-14 h-14 rounded-2xl bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="handshake" class="w-7 h-7"></i>
+            <i data-lucide="hand-heart" class="w-7 h-7"></i>
           </div>
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Pillar 05</span>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Reliability & Partnership
+          <h3 class="t-sub text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
+            Accessibility &amp; Affordability
           </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Ensuring uninterrupted formulation supply chains and building trust-based relationships with physicians, pharmacists, and partners.
+          <p class="t-body text-[#475569]">
+            We are dedicated to making quality medicines accessible and affordable, particularly in chronic and neuro-psychiatric therapies.
           </p>
         </div>
       </div>
@@ -492,18 +486,16 @@
       <div class="bg-white p-8 lg:p-10 rounded-[32px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/40 transition-all duration-300 flex flex-col justify-between group">
         <div>
           <div class="w-14 h-14 rounded-2xl bg-[#0493BB]/10 text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="globe" class="w-7 h-7"></i>
+            <i data-lucide="handshake" class="w-7 h-7"></i>
           </div>
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Pillar 06</span>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Accessibility & Social Impact
+          <h3 class="t-sub text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
+            Partnership &amp; Collaboration
           </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Dedicated to making chronic therapies affordable while actively championing mental health awareness and community wellness.
+          <p class="t-body text-[#475569]">
+            We build long-term relationships with doctors, pharmacists, distributors, and healthcare institutions based on mutual respect and shared success.
           </p>
         </div>
       </div>
-
     </div>
 
   </div>
@@ -513,27 +505,27 @@
 <!-- ==========================================
       LEADERSHIP & EXPERTISE SECTION
 =========================================== -->
-<section id="board-of-directors" class="w-full py-24 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+<section id="board-of-directors" class="w-full py-12 md:py-24 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
   <div class="max-w-[1500px] mx-auto">
     
     <!-- TOP HEADER & ACTION BUTTON -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 md:mb-16 gap-6">
       <div class="max-w-3xl">
         <!-- Pill Tag -->
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4">
           <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
           <span>Leadership & Vision</span>
         </div>
-        <h2 class="text-[38px] sm:text-[46px] lg:text-[54px] font-medium tracking-tight leading-[1.12] text-[#002A5C]">
+        <h2 class="t-section text-[#002A5C]">
           Pioneering clinical excellence, <br class="hidden sm:inline" />guided by thoughtful expertise.
         </h2>
       </div>
 
       <!-- Action Button (Arighna rolling-text style) -->
-      <a href="#leadership-team" class="nav-btn bg-[#002A5C] text-white font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block hover:bg-[#0493BB] transition-colors duration-300 shrink-0 text-center">
+      <a href="team.html" class="btn-roll nav-btn font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block shrink-0 text-center">
         <div class="relative h-[26px] overflow-hidden flex flex-col justify-start">
-          <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Meet the Leadership</span>
-          <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Meet the Leadership</span>
+          <span class="btn-text block text-[18px] font-semibold leading-[26px]">Meet the Leadership</span>
+          <span class="btn-text block text-[18px] font-semibold leading-[26px]" aria-hidden="true">Meet the Leadership</span>
         </div>
       </a>
     </div>
@@ -553,8 +545,7 @@
 
       <!-- Right Large Featured Image Banner -->
       <div class="lg:col-span-8 rounded-[32px] overflow-hidden bg-slate-100 border border-slate-200/80 shadow-sm relative min-h-[400px] lg:min-h-[480px] group">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1400&q=80" alt="Executive Leadership Team" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#002A5C]/40 via-transparent to-transparent"></div>
+        <img src="" alt="Executive Leadership Team" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
       </div>
 
     </div>
@@ -566,14 +557,14 @@
       <div class="bg-white rounded-[32px] p-8 lg:p-10 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-8 group hover:shadow-xl transition-all duration-300">
         
         <div class="space-y-4 flex-1">
-          <p class="text-[#475569] text-base leading-relaxed">
+          <p class="t-body text-[#475569]">
             Dr. Arnab Sen is an experienced clinician and pharmaceutical strategist with extensive training in CNS therapeutics and neuro-psychiatry. He guides our core R&D pipeline and clinical trials.
           </p>
-          <a href="#bio-arnab" class="inline-block text-[#0493BB] font-semibold text-sm hover:underline pt-2">
+          <a href="team.html" class="inline-block text-[#0493BB] font-semibold text-sm hover:underline pt-2">
             Learn more
           </a>
           <div class="pt-6">
-            <h3 class="text-2xl font-semibold text-[#002A5C] mb-2">Dr. Arnab Sen</h3>
+            <h3 class="t-sub text-[#002A5C] mb-2">Dr. Arnab Sen</h3>
             <span class="inline-block px-3.5 py-1.5 rounded-full bg-[#EAF7FA] text-[#0493BB] text-xs font-semibold">
               MD | Chief Medical Officer
             </span>
@@ -581,7 +572,7 @@
         </div>
 
         <div class="w-full sm:w-48 h-64 sm:h-72 rounded-[24px] overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Dr. Arnab Sen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src="" alt="Dr. Arnab Sen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
 
       </div>
@@ -590,14 +581,14 @@
       <div class="bg-white rounded-[32px] p-8 lg:p-10 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-8 group hover:shadow-xl transition-all duration-300">
         
         <div class="space-y-4 flex-1">
-          <p class="text-[#475569] text-base leading-relaxed">
+          <p class="t-body text-[#475569]">
             Dr. Sneha Mukherjee specializes in clinical pharmacology and regulatory affairs. She oversees strategic market expansion and ensures strict adherence to global pharmaceutical quality standards.
           </p>
-          <a href="#bio-sneha" class="inline-block text-[#0493BB] font-semibold text-sm hover:underline pt-2">
+          <a href="team.html" class="inline-block text-[#0493BB] font-semibold text-sm hover:underline pt-2">
             Learn more
           </a>
           <div class="pt-6">
-            <h3 class="text-2xl font-semibold text-[#002A5C] mb-2">Dr. Sneha Mukherjee</h3>
+            <h3 class="t-sub text-[#002A5C] mb-2">Dr. Sneha Mukherjee</h3>
             <span class="inline-block px-3.5 py-1.5 rounded-full bg-[#EAF7FA] text-[#0493BB] text-xs font-semibold">
               PhD | Head of Regulatory Affairs
             </span>
@@ -605,7 +596,7 @@
         </div>
 
         <div class="w-full sm:w-48 h-64 sm:h-72 rounded-[24px] overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80" alt="Dr. Sneha Mukherjee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src="" alt="Dr. Sneha Mukherjee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         </div>
 
       </div>
@@ -618,92 +609,55 @@
 
 <!-- ==========================================
       INVESTOR RELATIONS SECTION
+      Three pillars (Transparency, Trust, Sustainable Growth)
+      Grey boxes are image placeholders: put an <img class="w-full h-full object-cover"> inside.
 =========================================== -->
-<section id="investor-relations" class="w-full py-24 px-6 lg:px-12 bg-[#F8FAFC] text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+<section id="investor-relations" class="w-full py-12 md:py-24 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
   <div class="max-w-[1500px] mx-auto">
-    
-    <!-- TOP HEADER & ACTION BUTTON -->
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+
+    <!-- HEADER -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 md:mb-16 gap-6">
       <div class="max-w-3xl">
-        <!-- Pill Tag -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-[#0493BB] text-[14px] font-medium mb-4 shadow-sm border border-slate-200/60">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-[#0493BB] text-[14px] font-medium mb-4">
           <span class="w-2 h-2 rounded-full bg-[#0493BB]"></span>
           <span>Investor Relations</span>
         </div>
-        <h2 class="text-[38px] sm:text-[46px] lg:text-[54px] font-medium tracking-tight leading-[1.12] text-[#002A5C]">
-          Delivering lasting value & <br class="hidden sm:inline" />empowering healthier lives.
+        <h2 class="t-section text-[#002A5C]">
+          Delivering lasting value &amp; <br class="hidden sm:inline" /><span class="text-[#0493BB] font-semibold">empowering healthier lives.</span>
         </h2>
       </div>
-
-      <!-- Action Button (Arighna rolling-text style) -->
-      <a href="#investor-reports" class="nav-btn bg-[#002A5C] text-white font-semibold px-9 py-4 rounded-[40px] text-[18px] shadow-lg relative overflow-hidden group inline-block hover:bg-[#0493BB] transition-colors duration-300 shrink-0 text-center">
-        <div class="relative h-[26px] overflow-hidden flex flex-col justify-start">
-          <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Financial Reports</span>
-          <span class="btn-text block text-[18px] font-semibold leading-[26px] text-white transition-transform duration-300 group-hover:-translate-y-[26px]">Financial Reports</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- MAIN 3 PILLAR CARDS (CLEAN & UNIFIED) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 items-stretch">
-      
-      <!-- Card 1: Transparency -->
-      <div class="bg-white p-8 lg:p-10 rounded-[28px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/30 transition-all duration-300 flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-[#EAF7FA] text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="eye" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Transparency
-          </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            We believe in open communication, ethical business practices, and clear disclosure of information. Transparency enables our stakeholders to make informed decisions and strengthens confidence in our organization.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2: Sustainable Growth -->
-      <div class="bg-white p-8 lg:p-10 rounded-[28px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/30 transition-all duration-300 flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-[#EAF7FA] text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="trending-up" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Sustainable Growth
-          </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            We believe in open communication, ethical business practices, and clear disclosure of information. Sustainable growth enables our stakeholders to make informed decisions and strengthens confidence in our organization.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3: Trust -->
-      <div class="bg-white p-8 lg:p-10 rounded-[28px] border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0493BB]/30 transition-all duration-300 flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-[#EAF7FA] text-[#0493BB] flex items-center justify-center mb-8 group-hover:bg-[#0493BB] group-hover:text-white transition-colors duration-300">
-            <i data-lucide="shield-check" class="w-6 h-6"></i>
-          </div>
-          <h3 class="text-2xl font-semibold text-[#002A5C] mb-4 group-hover:text-[#0493BB] transition-colors">
-            Trust
-          </h3>
-          <p class="text-[#475569] text-base leading-relaxed">
-            Trust is the foundation of every relationship we build. Through integrity, accountability, and consistent performance, we strive to earn and maintain the confidence of our investors, partners, healthcare professionals, and patients.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- BOTTOM SUMMARY STATEMENT BANNER -->
-    <div class="bg-[#EAF7FA] rounded-[28px] p-8 lg:p-10 border border-[#0493BB]/20 flex flex-col md:flex-row items-center justify-between gap-6">
-      <p class="text-[18px] sm:text-[20px] font-medium text-[#002A5C] leading-snug max-w-4xl">
-        Together, Transparency, Trust, and Sustainable Growth drive Arighna Pharma’s vision of delivering lasting value and empowering healthier lives.
+      <p class="t-lead text-[#475569] lg:max-w-md">
+        Together, Transparency, Trust, and Sustainable Growth drive Arighna Pharma's vision of delivering lasting value and empowering healthier lives.
       </p>
-      <div class="shrink-0">
-        <span class="inline-block px-4 py-2 rounded-full bg-white text-[#0493BB] text-sm font-semibold shadow-sm border border-[#0493BB]/20">
-          Investor Commitment
-        </span>
+    </div>
+
+    <!-- PILLARS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+      <div class="group flex flex-col">
+        <div class="w-full aspect-[4/3] rounded-[24px] overflow-hidden bg-slate-200/80 border border-slate-300/60 mb-6"><img src="" alt="" class="w-full h-full object-cover" /></div>
+        <h3 class="t-sub text-[#002A5C] mb-3">Transparency</h3>
+        <p class="t-body text-[#475569]">
+          We believe in open communication, ethical business practices, and clear disclosure of information. Transparency enables our stakeholders to make informed decisions and strengthens confidence in our organization.
+        </p>
       </div>
+
+      <div class="group flex flex-col">
+        <div class="w-full aspect-[4/3] rounded-[24px] overflow-hidden bg-slate-200/80 border border-slate-300/60 mb-6"><img src="" alt="" class="w-full h-full object-cover" /></div>
+        <h3 class="t-sub text-[#002A5C] mb-3">Trust</h3>
+        <p class="t-body text-[#475569]">
+          Trust is the foundation of every relationship we build. Through integrity, accountability, and consistent performance, we strive to earn and maintain the confidence of our investors, partners, healthcare professionals, and patients.
+        </p>
+      </div>
+
+      <div class="group flex flex-col">
+        <div class="w-full aspect-[4/3] rounded-[24px] overflow-hidden bg-slate-200/80 border border-slate-300/60 mb-6"><img src="" alt="" class="w-full h-full object-cover" /></div>
+        <h3 class="t-sub text-[#002A5C] mb-3">Sustainable Growth</h3>
+        <p class="t-body text-[#475569]">
+          Our focus is on creating long-term value through responsible business strategies, innovation, and operational excellence. We are committed to achieving sustainable growth while contributing positively to healthcare and society.
+        </p>
+      </div>
+
     </div>
 
   </div>
@@ -713,7 +667,7 @@
 <!-- ==========================================
       SECTION: FREQUENTLY ASKED QUESTIONS (FAQ)
 =========================================== -->
-<section id="faq-section" class="w-full py-28 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+<section id="faq-section" class="w-full py-12 md:py-28 px-6 lg:px-12 bg-white text-[#002A5C] relative overflow-hidden font-['Plus_Jakarta_Sans',sans-serif]">
   <div class="max-w-[1500px] mx-auto w-full">
     
     <!-- STRICT TOP POSITIONING GRID -->
@@ -729,19 +683,19 @@
         </div>
 
         <!-- Short 2-Line Heading -->
-        <h2 class="text-[36px] sm:text-[44px] lg:text-[50px] font-medium tracking-tight leading-[1.12] text-[#002A5C] mb-5">
+        <h2 class="t-section text-[#002A5C] mb-5">
           Got questions? <br />
           <span class="text-[#0493BB] font-semibold">We have answers.</span>
         </h2>
 
         <!-- Description Paragraph -->
-        <p class="text-sm sm:text-base font-normal text-[#475569] leading-relaxed max-w-lg">
+        <p class="t-body font-normal text-[#475569] max-w-lg">
           Find answers to common questions about our high-quality pharmaceutical products, global healthcare standards, and research-driven therapeutic solutions designed for medical professionals.
         </p>
 
         <!-- Support CTA Link -->
         <div class="mt-8">
-          <a href="#contact" class="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0493BB] hover:text-[#002A5C] transition-colors group">
+          <a href="contact.html#contact-form" class="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0493BB] hover:text-[#002A5C] transition-colors group">
             <span>Have a specific inquiry? Contact our team</span>
             <svg class="w-4 h-4 stroke-current transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -767,7 +721,7 @@
             </button>
             <div class="faq-content grid grid-rows-[1fr] transition-all duration-300 ease-in-out">
               <div class="overflow-hidden">
-                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                <p class="t-body text-[#475569] pb-5 pr-6">
                   Arighna Pharma specializes in core medical divisions including cardiology, neurology, gastroenterology, oncology, and general healthcare therapies designed to improve overall patient outcomes.
                 </p>
               </div>
@@ -786,7 +740,7 @@
             </button>
             <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
               <div class="overflow-hidden">
-                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                <p class="t-body text-[#475569] pb-5 pr-6">
                   All our pharmaceutical products adhere to global WHO-GMP standards, undergo rigorous clinical testing, and are manufactured in state-of-the-art accredited facilities.
                 </p>
               </div>
@@ -805,7 +759,7 @@
             </button>
             <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
               <div class="overflow-hidden">
-                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                <p class="t-body text-[#475569] pb-5 pr-6">
                   We supply healthcare solutions across regional and international markets, partnering with trusted medical institutions, hospitals, and pharmaceutical distribution networks.
                 </p>
               </div>
@@ -824,7 +778,7 @@
             </button>
             <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
               <div class="overflow-hidden">
-                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                <p class="t-body text-[#475569] pb-5 pr-6">
                   Doctors, pharmacists, and medical distributors can reach out through our official contact portal or partner page to discuss clinical support and commercial collaborations.
                 </p>
               </div>
@@ -843,7 +797,7 @@
             </button>
             <div class="faq-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
               <div class="overflow-hidden">
-                <p class="text-sm sm:text-base text-[#475569] leading-relaxed pb-5 pr-6">
+                <p class="t-body text-[#475569] pb-5 pr-6">
                   We integrate eco-friendly manufacturing practices, sustainable packaging, and active community wellness initiatives into our long-term business model.
                 </p>
               </div>
@@ -923,12 +877,9 @@
       <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
         <div>
           <!-- Company Logo -->
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-[#0493BB] flex items-center justify-center font-bold text-xl text-white shadow-md">
-              A
-            </div>
-            <span class="text-2xl font-extrabold tracking-tight text-white">ARIGHNA PHARMA</span>
-          </div>
+          <a href="index.html" class="inline-block mb-6 hover:opacity-90 transition-opacity" aria-label="Arighna Pharma home">
+            <img src="assets/Photos/logo-horizontal-white.png" alt="Arighna Pharma" class="h-11 sm:h-12 w-auto" width="991" height="170" />
+          </a>
 
           <!-- Description / Tagline -->
           <p class="text-white/70 text-base leading-relaxed max-w-sm mb-8 font-normal">
@@ -942,7 +893,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <span>Headquartered in West Bengal, India</span>
+              <span>PL-5-B, 11/1, Sector 1, New Panvel (West), Mumbai, Maharashtra - 410206</span>
             </div>
 
             <div class="flex items-center gap-3">
@@ -956,7 +907,7 @@
               <svg class="w-5 h-5 text-[#0493BB] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
               </svg>
-              <a href="tel:+911234567890" class="hover:text-[#0493BB] transition-colors duration-200">+91 (123) 456-7890</a>
+              <a href="tel:+919830334724" class="hover:text-[#0493BB] transition-colors duration-200">9830334724</a>
             </div>
           </div>
         </div>
@@ -964,28 +915,28 @@
         <!-- Social Icons -->
         <div class="flex items-center gap-3 pt-2">
           <!-- Facebook -->
-          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
           </a>
 
           <!-- Instagram -->
-          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
 
           <!-- X (Twitter) -->
-          <a href="#" aria-label="X" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="X" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
           </a>
 
           <!-- LinkedIn -->
-          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
+          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center text-[#0493BB] hover:text-white hover:bg-[#0493BB] hover:border-[#0493BB] transition-all duration-300">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
@@ -1000,10 +951,11 @@
         <div>
           <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Our Story</h3>
           <ul class="space-y-3 text-sm text-white/70">
-            <li><a href="#overview" class="hover:text-[#0493BB] transition-colors duration-200">Overview</a></li>
-            <li><a href="#board-of-directors" class="hover:text-[#0493BB] transition-colors duration-200">Board Of Directors</a></li>
-            <li><a href="#core-values" class="hover:text-[#0493BB] transition-colors duration-200">Core Values</a></li>
-            <li><a href="#products" class="hover:text-[#0493BB] transition-colors duration-200">Products</a></li>
+            <li><a href="about.html#about-section" class="hover:text-[#0493BB] transition-colors duration-200">Overview</a></li>
+            <li><a href="about.html#board-of-directors" class="hover:text-[#0493BB] transition-colors duration-200">Board Of Directors</a></li>
+            <li><a href="team.html" class="hover:text-[#0493BB] transition-colors duration-200">Leadership Team</a></li>
+            <li><a href="about.html#core-values" class="hover:text-[#0493BB] transition-colors duration-200">Core Values</a></li>
+            <li><a href="products.html" class="hover:text-[#0493BB] transition-colors duration-200">Products</a></li>
           </ul>
         </div>
 
@@ -1011,11 +963,11 @@
         <div>
           <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Beyond Business</h3>
           <ul class="space-y-3 text-sm text-white/70">
-            <li><a href="#division" class="hover:text-[#0493BB] transition-colors duration-200">Division</a></li>
-            <li><a href="#vision" class="hover:text-[#0493BB] transition-colors duration-200">Vision</a></li>
-            <li><a href="#objective" class="hover:text-[#0493BB] transition-colors duration-200">Objective</a></li>
-            <li><a href="#geographic-vision" class="hover:text-[#0493BB] transition-colors duration-200">Geographic Vision</a></li>
-            <li><a href="#commitment-to-society" class="hover:text-[#0493BB] transition-colors duration-200">Commitment to Society</a></li>
+            <li><a href="beyond-business.html#objective" class="hover:text-[#0493BB] transition-colors duration-200">Objective</a></li>
+            <li><a href="beyond-business.html#therapeutics-section" class="hover:text-[#0493BB] transition-colors duration-200">Our Focus Areas</a></li>
+            <li><a href="beyond-business.html#vision-section" class="hover:text-[#0493BB] transition-colors duration-200">Vision</a></li>
+            <li><a href="beyond-business.html#geographic-vision" class="hover:text-[#0493BB] transition-colors duration-200">Geographic Vision</a></li>
+            <li><a href="beyond-business.html#discovery-section" class="hover:text-[#0493BB] transition-colors duration-200">Commitment to Society</a></li>
           </ul>
         </div>
 
@@ -1023,10 +975,13 @@
         <div class="col-span-2 sm:col-span-1">
           <h3 class="text-white font-semibold text-base mb-5 tracking-wide">Quick Links</h3>
           <ul class="space-y-3 text-sm text-white/70">
-            <li><a href="#investor-relations" class="hover:text-[#0493BB] transition-colors duration-200">Investor Relations</a></li>
-            <li><a href="#careers" class="hover:text-[#0493BB] transition-colors duration-200">Careers</a></li>
-            <li><a href="#blogs" class="hover:text-[#0493BB] transition-colors duration-200">Blogs</a></li>
-            <li><a href="#contact" class="hover:text-[#0493BB] transition-colors duration-200">Contact Us</a></li>
+            <li><a href="index.html" class="hover:text-[#0493BB] transition-colors duration-200">Home</a></li>
+            <li><a href="about.html" class="hover:text-[#0493BB] transition-colors duration-200">About Us</a></li>
+            <li><a href="beyond-business.html" class="hover:text-[#0493BB] transition-colors duration-200">Beyond Business</a></li>
+            <li><a href="about.html#investor-relations" class="hover:text-[#0493BB] transition-colors duration-200">Investor Relations</a></li>
+            <li><a href="careers.html" class="hover:text-[#0493BB] transition-colors duration-200">Careers</a></li>
+            <li><a href="blogs.html" class="hover:text-[#0493BB] transition-colors duration-200">Blogs</a></li>
+            <li><a href="contact.html" class="hover:text-[#0493BB] transition-colors duration-200">Contact Us</a></li>
           </ul>
         </div>
 
