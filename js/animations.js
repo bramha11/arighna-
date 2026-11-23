@@ -404,6 +404,7 @@
       });
       clearTimeout(timer);
       timer = setTimeout(flush, 0);
+      scheduleRefresh(); // a rebuilt grid can change the page height
     });
     Array.prototype.forEach.call(grids, function (g) { mo.observe(g, { childList: true }); });
   }
@@ -431,6 +432,17 @@
     });
     document.addEventListener("input", scheduleRefresh);
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+    // Content that arrives later (products, blogs and jobs loaded from the
+    // server) changes the page height without any click. Re-measure the
+    // triggers whenever the page height really changes, otherwise sections
+    // below (FAQ, footer) keep stale positions and stay hidden on screen.
+    if (window.ResizeObserver) {
+      var lastHeight = document.body.scrollHeight;
+      new ResizeObserver(function () {
+        var h = document.body.scrollHeight;
+        if (Math.abs(h - lastHeight) > 2) { lastHeight = h; scheduleRefresh(); }
+      }).observe(document.body);
+    }
   }
   if (document.readyState === "complete") {
     boot();

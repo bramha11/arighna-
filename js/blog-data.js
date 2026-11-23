@@ -14,7 +14,7 @@ window.ARIGHNA_BLOGS = [
     date: "Nov 02, 2026",
     readTime: "4 min read",
     excerpt: "Exploring the pharmacokinetic advantages of rapid-release oral disintegrating tablets in modern neuropsychiatric treatment protocols.",
-    image: "",
+    image: "assets/images/blogs/orodispersible.jpg",
     url: "bloginside.html"
   },
   {
@@ -23,7 +23,7 @@ window.ARIGHNA_BLOGS = [
     date: "Oct 28, 2026",
     readTime: "5 min read",
     excerpt: "How green chemistry and reduced carbon footprint initiatives are transforming global pharmaceutical active ingredient supply chains.",
-    image: "",
+    image: "assets/images/blogs/sustainable-manufacturing.jpg",
     url: "bloginside.html"
   },
   {
@@ -32,7 +32,7 @@ window.ARIGHNA_BLOGS = [
     date: "Oct 15, 2026",
     readTime: "7 min read",
     excerpt: "Analyzing dual-action formulation synergies such as Donepezil and Memantine in slowing neurodegenerative decline.",
-    image: "",
+    image: "assets/images/blogs/cognitive-health.jpg",
     url: "bloginside.html"
   },
   {
@@ -41,7 +41,7 @@ window.ARIGHNA_BLOGS = [
     date: "Sep 30, 2026",
     readTime: "5 min read",
     excerpt: "Building lasting partnerships with community health clinics to ensure uninterrupted access to essential maintenance medications.",
-    image: "",
+    image: "assets/images/blogs/rural-healthcare.jpg",
     url: "bloginside.html"
   },
   {
@@ -50,7 +50,7 @@ window.ARIGHNA_BLOGS = [
     date: "Sep 18, 2026",
     readTime: "6 min read",
     excerpt: "How prolonged-release profile optimization minimizes daily dosage fluctuations and improves patient treatment compliance.",
-    image: "",
+    image: "assets/images/blogs/extended-release.jpg",
     url: "bloginside.html"
   },
   {
@@ -59,7 +59,7 @@ window.ARIGHNA_BLOGS = [
     date: "Aug 24, 2026",
     readTime: "8 min read",
     excerpt: "Maintaining stringent international purity benchmarks across manufacturing facilities to support expansion into new territories.",
-    image: "",
+    image: "assets/images/blogs/quality-compliance.jpg",
     url: "bloginside.html"
   }
 ];
@@ -93,3 +93,17 @@ window.renderBlogCard = function (a, tag, extraClass) {
     "</div>" +
   "</" + tag + ">";
 };
+
+/* Live posts from the admin panel (server: GET /api/blogs). The list above is the
+   fallback. When the live list arrives, ARIGHNA_BLOGS is updated in place and an
+   "arighna:blogs" event tells the page to redraw its cards. */
+(function () {
+  if (!/^https?:$/.test(location.protocol) || !window.fetch) return;
+  fetch("/api/blogs").then(function (r) { return r.ok ? r.json() : null; }).then(function (live) {
+    if (!Array.isArray(live)) return;
+    var list = window.ARIGHNA_BLOGS;
+    list.length = 0;
+    live.forEach(function (b) { list.push(b); });
+    window.dispatchEvent(new Event("arighna:blogs"));
+  }).catch(function () { /* keep the built-in posts */ });
+})();

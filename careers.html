@@ -160,17 +160,17 @@
           <!-- Column 1 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 1 (Taller Height) -->
-            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/careers/hero-1.jpg" alt="Colleagues discussing a project" class="w-full h-full object-cover" /></div>
             <!-- Box 3 (Standard Height) -->
-            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/careers/hero-2.jpg" alt="Team working on laptops" class="w-full h-full object-cover" /></div>
           </div>
 
           <!-- Column 2 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 2 (Standard Height) -->
-            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/careers/hero-3.jpg" alt="Team meeting" class="w-full h-full object-cover" /></div>
             <!-- Box 4 (Taller Height) -->
-            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/careers/hero-4.jpg" alt="Professional at work" class="w-full h-full object-cover" /></div>
           </div>
 
         </div>
@@ -205,8 +205,8 @@
         </p>
       </div>
 
-      <!-- ROLES -->
-      <div class="border-b border-slate-200">
+      <!-- ROLES (replaced by the live list from the admin panel when the server is running) -->
+      <div id="jobList" class="border-b border-slate-200">
 
         <!-- Role 1 -->
         <article class="job-row border-t border-slate-200 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
@@ -282,12 +282,12 @@
           Tell us a little about yourself and attach your resume. Don't see the right role? Choose "Other Openings" and we'll keep you in mind.
         </p>
         <!-- image placeholder: put an <img class="w-full h-full object-cover"> inside -->
-        <div class="hidden lg:block relative w-full flex-1 min-h-[240px] rounded-[24px] overflow-hidden bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="absolute inset-0 w-full h-full object-cover" /></div>
+        <div class="hidden lg:block relative w-full flex-1 min-h-[240px] rounded-[24px] overflow-hidden bg-slate-200/80 border border-slate-300/60"><img loading="lazy" decoding="async" src="assets/images/careers/apply.jpg" alt="Colleagues working together" class="absolute inset-0 w-full h-full object-cover" /></div>
       </div>
 
       <!-- RIGHT: form -->
       <div class="lg:col-span-7">
-        <form action="#" method="POST" enctype="multipart/form-data" class="bg-[#F8FAFC] border border-slate-100 rounded-[32px] p-6 sm:p-10 lg:p-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+        <form id="applyForm" action="/api/applications" method="POST" enctype="multipart/form-data" novalidate class="bg-[#F8FAFC] border border-slate-100 rounded-[32px] p-6 sm:p-10 lg:p-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
 
           <div class="flex flex-col gap-2">
             <label for="applicant_name" class="text-sm font-semibold text-[#002A5C]">Your name *</label>
@@ -514,8 +514,9 @@
     // Careers: "Apply" on a role preselects it in the form; the upload shows the chosen file name
     (function () {
       var select = document.getElementById("position_applied");
-      document.querySelectorAll(".job-apply").forEach(function (a) {
-        a.addEventListener("click", function () { if (select) select.value = a.getAttribute("data-role"); });
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest(".job-apply");
+        if (a && select) select.value = a.getAttribute("data-role");
       });
       var file = document.getElementById("resume_file"), name = document.getElementById("resume_name");
       if (file && name) file.addEventListener("change", function () {
@@ -524,5 +525,62 @@
     })();
   </script>
 
+
+  <!-- Careers: live openings + application form (server: GET /api/jobs, POST /api/applications) -->
+  <script>
+    (function () {
+      var live = /^https?:$/.test(location.protocol);
+      var list = document.getElementById("jobList"), select = document.getElementById("position_applied");
+      var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+
+      // 1. openings from the admin panel, in the same row design
+      if (live && list) {
+        fetch("/api/jobs").then(function (r) { return r.ok ? r.json() : null; }).then(function (jobs) {
+          if (!Array.isArray(jobs)) return;
+          list.innerHTML = jobs.length ? jobs.map(function (j) {
+            return '<article class="job-row border-t border-slate-200 py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">' +
+              '<div class="lg:col-span-4"><h3 class="t-sub text-[#002A5C]">' + esc(j.title) + '</h3>' +
+              (j.meta ? '<p class="mt-2 text-[15px] font-semibold text-[#0493BB]">' + esc(j.meta) + '</p>' : '') + '</div>' +
+              '<p class="t-body text-[#475569] lg:col-span-6">' + (j.description_html || '') + '</p>' +
+              '<div class="lg:col-span-2 lg:flex lg:justify-end"><a href="#apply" data-role="' + esc(j.slug) + '" class="job-apply btn-roll inline-flex font-semibold px-7 py-3 rounded-[30px] text-[15px]">' +
+              '<span class="btn-roll-mask"><span class="btn-text">Apply</span><span class="btn-text" aria-hidden="true">Apply</span></span></a></div></article>';
+          }).join("") : '<p class="border-t border-slate-200 py-10 t-body text-[#475569]">There are no open roles right now. You can still send us your resume using the form below.</p>';
+          if (select) {
+            select.innerHTML = '<option value="" disabled selected>Select position</option>' +
+              jobs.map(function (j) { return '<option value="' + esc(j.slug) + '">' + esc(j.title) + '</option>'; }).join("") +
+              '<option value="other">Other Openings</option>';
+          }
+          if (window.ScrollTrigger) ScrollTrigger.refresh();
+        }).catch(function () {});
+      }
+
+      // 2. send the application
+      var form = document.getElementById("applyForm");
+      if (!form) return;
+      var note = document.createElement("p");
+      note.className = "sm:col-span-2 hidden text-[15px] font-medium rounded-[14px] px-5 py-4";
+      form.appendChild(note);
+      function show(msg, ok) {
+        note.textContent = msg;
+        note.className = "sm:col-span-2 text-[15px] font-medium rounded-[14px] px-5 py-4 " + (ok ? "bg-[#0493BB]/10 text-[#002A5C]" : "bg-red-50 text-red-700");
+      }
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        if (!live) { show("The form will work once the website is running on the server.", false); return; }
+        var btn = form.querySelector('button[type="submit"]'); btn.disabled = true; btn.style.opacity = ".7";
+        fetch("/api/applications", { method: "POST", body: new FormData(form) })
+          .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.d.error || "Something went wrong.");
+            show(res.d.message || "Thank you! Your application has been received.", true);
+            form.reset();
+            var n = document.getElementById("resume_name"); if (n) n.textContent = "Choose a file";
+          })
+          .catch(function (err) { show(err.message || "Could not send. Please try again.", false); })
+          .finally(function () { btn.disabled = false; btn.style.opacity = ""; });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -160,17 +160,17 @@
           <!-- Column 1 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 1 (Taller Height) -->
-            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/contact/hero-1.jpg" alt="Support team member on a call" class="w-full h-full object-cover" /></div>
             <!-- Box 3 (Standard Height) -->
-            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/contact/hero-2.jpg" alt="Friendly support team" class="w-full h-full object-cover" /></div>
           </div>
 
           <!-- Column 2 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 2 (Standard Height) -->
-            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/contact/hero-3.jpg" alt="Our team" class="w-full h-full object-cover" /></div>
             <!-- Box 4 (Taller Height) -->
-            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/contact/hero-4.jpg" alt="Handshake" class="w-full h-full object-cover" /></div>
           </div>
 
         </div>
@@ -224,7 +224,7 @@
 
       <!-- RIGHT: form -->
       <div class="lg:col-span-7">
-        <form action="#" method="POST" class="bg-[#F8FAFC] border border-slate-100 rounded-[32px] p-6 sm:p-10 lg:p-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+        <form id="contactForm" action="/api/contact" method="POST" novalidate class="bg-[#F8FAFC] border border-slate-100 rounded-[32px] p-6 sm:p-10 lg:p-12 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
 
           <div class="flex flex-col gap-2">
             <label for="full_name" class="text-sm font-semibold text-[#002A5C]">Full name *</label>
@@ -627,5 +627,42 @@
     lucide.createIcons();
   </script>
 
+
+  <!-- Contact form -> admin panel inbox (server: POST /api/contact) -->
+  <script>
+    (function () {
+      var form = document.getElementById("contactForm");
+      if (!form) return;
+      // hidden field that people never see; bots that fill it are ignored by the server
+      var trap = document.createElement("input");
+      trap.type = "text"; trap.name = "website"; trap.tabIndex = -1; trap.autocomplete = "off";
+      trap.setAttribute("aria-hidden", "true");
+      trap.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;opacity:0;";
+      form.appendChild(trap);
+      var note = document.createElement("p");
+      note.className = "sm:col-span-2 hidden text-[15px] font-medium rounded-[14px] px-5 py-4";
+      form.appendChild(note);
+      function show(msg, ok) {
+        note.textContent = msg;
+        note.className = "sm:col-span-2 text-[15px] font-medium rounded-[14px] px-5 py-4 " + (ok ? "bg-[#0493BB]/10 text-[#002A5C]" : "bg-red-50 text-red-700");
+      }
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        if (!/^https?:$/.test(location.protocol)) { show("The form will work once the website is running on the server.", false); return; }
+        var btn = form.querySelector('button[type="submit"]'); btn.disabled = true; btn.style.opacity = ".7";
+        var data = {}; new FormData(form).forEach(function (v, k) { data[k] = v; });
+        fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+          .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.d.error || "Something went wrong.");
+            show(res.d.message || "Thank you! Your message has been sent.", true);
+            form.reset();
+          })
+          .catch(function (err) { show(err.message || "Could not send. Please try again.", false); })
+          .finally(function () { btn.disabled = false; btn.style.opacity = ""; });
+      });
+    })();
+  </script>
 </body>
 </html>

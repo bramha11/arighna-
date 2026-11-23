@@ -160,17 +160,17 @@
           <!-- Column 1 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 1 (Taller Height) -->
-            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="1" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/products/hero-1.jpg" alt="Medicines in blister packs" class="w-full h-full object-cover" /></div>
             <!-- Box 3 (Standard Height) -->
-            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="4" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/products/hero-2.jpg" alt="Assorted capsules" class="w-full h-full object-cover" /></div>
           </div>
 
           <!-- Column 2 -->
           <div class="flex flex-col gap-6 sm:gap-8">
             <!-- Box 2 (Standard Height) -->
-            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="2" class="overflow-hidden w-full h-[200px] sm:h-[260px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/products/hero-3.jpg" alt="Capsule filling" class="w-full h-full object-cover" /></div>
             <!-- Box 4 (Taller Height) -->
-            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="" alt="" class="w-full h-full object-cover" /></div>
+            <div data-hero-slot="3" class="overflow-hidden w-full h-[260px] sm:h-[340px] rounded-[24px] bg-slate-200/80 border border-slate-300/60"><img src="assets/images/products/hero-4.jpg" alt="Tablets and capsules" class="w-full h-full object-cover" /></div>
           </div>
 
         </div>
@@ -724,8 +724,28 @@
       }
     }
 
+    // Live product list from the admin panel (server: GET /api/products).
+    // The list above stays as a fallback when the server is not reachable.
+    async function loadLiveProducts() {
+      if (!/^https?:$/.test(location.protocol)) return;
+      try {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 5000);
+        const res = await fetch('/api/products', { signal: ctrl.signal });
+        clearTimeout(t);
+        if (!res.ok) return;
+        const live = await res.json();
+        if (!Array.isArray(live) || !live.length) return;
+        products.length = 0;
+        live.forEach(p => products.push({ brand: p.brand, active: p.active, category: p.category, pack: p.pack }));
+        categories.length = 0;
+        categories.push('All', ...new Set(products.map(p => p.category)));
+      } catch (e) { /* keep the built-in list */ }
+    }
+
     // Initialize on load
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadLiveProducts();
       initCategories();
       // Opened from a homepage "Focus Areas" pill: products.html?category=Anti-Depressants
       const wanted = new URLSearchParams(location.search).get('category');
