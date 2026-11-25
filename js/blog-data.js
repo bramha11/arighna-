@@ -73,7 +73,8 @@ window.renderBlogCard = function (a, tag, extraClass) {
     });
   };
   tag = tag || "div";
-  return "<" + tag + ' class="bg-white rounded-[24px] overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group ' + (extraClass || "") + '">' +
+  // The whole card is clickable: the Read Article link's ::after stretches over the card ("relative").
+  return "<" + tag + ' class="relative bg-white rounded-[24px] overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group ' + (extraClass || "") + '">' +
     "<div>" +
       '<div class="overflow-hidden w-full h-[220px] bg-slate-200/80 border-b border-slate-200/60"><img src="' + esc(a.image) + '" alt="' + (a.image ? esc(a.title) : "") + '" class="w-full h-full object-cover" /></div>' +
       '<div class="p-6">' +
@@ -87,7 +88,7 @@ window.renderBlogCard = function (a, tag, extraClass) {
     "</div>" +
     '<div class="px-6 pb-6 flex items-center justify-between border-t border-slate-100 pt-4">' +
       '<span class="text-xs text-slate-400 font-medium">' + esc(a.readTime) + "</span>" +
-      '<a href="' + esc(a.url || "#") + '" class="text-sm font-semibold text-[#0493BB] hover:underline flex items-center gap-1">' +
+      '<a href="' + esc(a.url || "#") + '" class="text-sm font-semibold text-[#0493BB] hover:underline flex items-center gap-1 after:absolute after:inset-0 after:content-[\'\']">' +
         'Read Article <i data-lucide="arrow-right" class="w-4 h-4"></i>' +
       "</a>" +
     "</div>" +
